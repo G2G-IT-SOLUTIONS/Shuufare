@@ -24,7 +24,7 @@ export default function ApplicationStatus() {
           Back to Home
         </a>
 
-        <div className="overflow-hidden rounded-[2.5rem] border border-slate-200/80 bg-white p-1.5 shadow-2xl shadow-slate-950/[0.06]">
+        <div className="overflow-hidden rounded-[2.5rem] border border-slate-200/80 bg-white p-1.5 shadow-2xl shadow-slate-950/6">
           <div className="rounded-4xl bg-linear-to-b from-slate-50/80 to-white p-7 sm:p-10 lg:p-12">
             {/* Header */}
             <div className="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-emerald-50 text-emerald-600 mb-4">
@@ -41,7 +41,7 @@ export default function ApplicationStatus() {
             {/* Content Grid */}
             <div className="mt-10 grid gap-6 lg:grid-cols-[0.95fr_1.05fr]">
               {/* Reference Card */}
-              <div className="overflow-hidden rounded-[2rem] bg-linear-to-br from-slate-900 via-slate-900 to-slate-800 p-7 text-white shadow-xl shadow-slate-950/15">
+              <div className="overflow-hidden rounded-4xl bg-linear-to-br from-slate-900 via-slate-900 to-slate-800 p-7 text-white shadow-xl shadow-slate-950/15">
                 <div className="flex items-center gap-2">
                   <div className="h-2 w-2 rounded-full bg-emerald-400 animate-pulse-ring" />
                   <span className="text-sm font-semibold uppercase tracking-[0.22em] text-emerald-400">Reference Code</span>
@@ -61,7 +61,7 @@ export default function ApplicationStatus() {
               </div>
 
               {/* Progress Card */}
-              <div className="rounded-[2rem] border border-slate-200/80 bg-white p-7">
+              <div className="rounded-4xl border border-slate-200/80 bg-white p-7">
                 <h2 className="font-display text-xl font-bold text-slate-950">Progress</h2>
                 <p className="mt-1 text-sm text-slate-500">Your application is being reviewed</p>
 

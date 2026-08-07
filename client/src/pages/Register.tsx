@@ -8,8 +8,8 @@ export default function Register() {
       <div className="absolute -right-32 bottom-1/4 h-64 w-64 rounded-full bg-teal-50/40 blur-3xl" />
 
       <div className="relative mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
-        <div className="overflow-hidden rounded-[2.5rem] border border-slate-200/80 bg-white p-1.5 shadow-2xl shadow-slate-950/[0.06]">
-          <div className="rounded-[2rem] bg-linear-to-b from-white to-slate-50/30 p-7 sm:p-10 lg:p-12">
+        <div className="overflow-hidden rounded-[2.5rem] border border-slate-200/80 bg-white p-1.5 shadow-2xl shadow-slate-950/6">
+          <div className="rounded-4xl bg-linear-to-b from-white to-slate-50/30 p-7 sm:p-10 lg:p-12">
             {/* Header */}
             <div className="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-emerald-50 text-emerald-600 mb-4">
               <FileText className="h-6 w-6" />
@@ -25,7 +25,7 @@ export default function Register() {
             {/* Content Grid */}
             <div className="mt-10 grid gap-6 lg:grid-cols-[1fr_0.85fr]">
               {/* Form */}
-              <form className="space-y-5 rounded-[2rem] border border-slate-200/80 bg-slate-50/50 p-7">
+              <form className="space-y-5 rounded-4xl border border-slate-200/80 bg-slate-50/50 p-7">
                 <div className="grid gap-4 sm:grid-cols-2">
                   <div className="relative">
                     <User className="absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400" />
@@ -68,7 +68,7 @@ export default function Register() {
 
               {/* Sidebar */}
               <aside className="flex flex-col gap-5">
-                <div className="rounded-[2rem] bg-linear-to-br from-slate-900 via-slate-900 to-slate-800 p-7 text-white shadow-xl shadow-slate-950/15">
+                <div className="rounded-4xl bg-linear-to-br from-slate-900 via-slate-900 to-slate-800 p-7 text-white shadow-xl shadow-slate-950/15">
                   <h2 className="font-display text-xl font-bold">What happens next</h2>
                   <ul className="mt-6 space-y-5">
                     {[
@@ -86,7 +86,7 @@ export default function Register() {
                   </ul>
                 </div>
 
-                <div className="rounded-[2rem] border border-emerald-200/60 bg-emerald-50/40 p-6">
+                <div className="rounded-4xl border border-emerald-200/60 bg-emerald-50/40 p-6">
                   <p className="text-sm font-semibold text-emerald-800">💡 Quick tip</p>
                   <p className="mt-2 text-sm leading-7 text-emerald-700">
                     Have your driving license ready — it speeds up the verification process significantly.

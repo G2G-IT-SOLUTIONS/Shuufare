@@ -145,7 +145,7 @@ export default function Home() {
           <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {eligibleGroups.map((item, index) => {
               const Icon = item.icon
-              const colors = colorVariants[item.color]
+              const colors = colorVariants[item.color as keyof typeof colorVariants]
               
               return (
                 <div
@@ -158,7 +158,7 @@ export default function Home() {
                   {/* Card content */}
                   <div className="flex items-start gap-4">
                     {/* Icon container */}
-                    <div className={`relative flex h-14 w-14 shrink-0 items-center justify-center rounded-xl ${colors.bg} transition-all duration-300 group-hover:scale-110 group-hover:rotate-[-3deg] ${colors.hover}`}>
+                    <div className={`relative flex h-14 w-14 shrink-0 items-center justify-center rounded-xl ${colors.bg} transition-all duration-300 group-hover:scale-110 group-hover:-rotate-3 ${colors.hover}`}>
                       <Icon className={`h-7 w-7 ${colors.icon} transition-transform duration-300 group-hover:scale-110`} />
                       {/* Glow effect */}
                       <div className={`absolute inset-0 rounded-xl ${colors.bg} opacity-0 transition-opacity duration-300 group-hover:opacity-100 blur-xl -z-10`} />

@@ -10,7 +10,7 @@ export default function CTASection() {
 
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Main CTA Card - refined glass effect */}
-        <div className="relative rounded-[2.5rem] bg-white/[0.03] p-8 shadow-2xl backdrop-blur-sm ring-1 ring-white/5 sm:p-12 lg:flex lg:items-center lg:justify-between lg:gap-10">
+        <div className="relative rounded-[2.5rem] bg-white/3 p-8 shadow-2xl backdrop-blur-sm ring-1 ring-white/5 sm:p-12 lg:flex lg:items-center lg:justify-between lg:gap-10">
           <div className="max-w-2xl">
             <div className="flex items-center gap-3 text-2xl font-bold tracking-tight text-white sm:text-3xl lg:text-4xl">
               <Rocket className="h-7 w-7 text-emerald-400" />
@@ -33,9 +33,9 @@ export default function CTASection() {
         </div>
 
         {/* Contact Footer Grid - refined cards */}
-        <div className="mt-8 grid gap-3 overflow-hidden rounded-[2.5rem] border border-white/5 bg-white/[0.02] p-3 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-8 grid gap-3 overflow-hidden rounded-[2.5rem] border border-white/5 bg-white/2 p-3 sm:grid-cols-2 lg:grid-cols-4">
           {/* Contact */}
-          <div className="rounded-3xl bg-white/[0.04] p-6 transition-colors duration-300 hover:bg-white/[0.07]">
+          <div className="rounded-3xl bg-white/4 p-6 transition-colors duration-300 hover:bg-white/[0.07]">
             <div className="flex items-center gap-2">
               <Phone className="h-4 w-4 text-emerald-400" />
               <span className="text-xs font-semibold uppercase tracking-[0.2em] text-emerald-400">Contact</span>
@@ -57,7 +57,7 @@ export default function CTASection() {
           </div>
 
           {/* Mission */}
-          <div className="rounded-3xl bg-white/[0.04] p-6 transition-colors duration-300 hover:bg-white/[0.07]">
+          <div className="rounded-3xl bg-white/4 p-6 transition-colors duration-300 hover:bg-white/[0.07]">
             <div className="text-xs font-semibold uppercase tracking-[0.2em] text-emerald-400">Empowering Drivers</div>
             <p className="mt-5 text-sm leading-relaxed text-slate-300">
               Stable income, dedicated support, and the foundation to build a better future.
@@ -65,7 +65,7 @@ export default function CTASection() {
           </div>
 
           {/* Address */}
-          <div className="rounded-3xl bg-white/[0.04] p-6 transition-colors duration-300 hover:bg-white/[0.07]">
+          <div className="rounded-3xl bg-white/4 p-6 transition-colors duration-300 hover:bg-white/[0.07]">
             <div className="flex items-center gap-2">
               <MapPin className="h-4 w-4 text-emerald-400" />
               <span className="text-xs font-semibold uppercase tracking-[0.2em] text-emerald-400">Address</span>
@@ -76,7 +76,7 @@ export default function CTASection() {
           </div>
 
           {/* Brand */}
-          <div className="flex flex-col items-center justify-center rounded-3xl bg-white/[0.04] p-6 transition-colors duration-300 hover:bg-white/[0.07]">
+          <div className="flex flex-col items-center justify-center rounded-3xl bg-white/4 p-6 transition-colors duration-300 hover:bg-white/[0.07]">
             <div className="text-xs font-semibold uppercase tracking-[0.2em] text-emerald-400">Shuufare</div>
             <img
               src="https://reg.g2gitsolutions.com/assets/shuufare%20logo.png"
