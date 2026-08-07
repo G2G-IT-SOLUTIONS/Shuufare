@@ -1,16 +1,24 @@
-# React + Vite
+# Shuufare Client
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+The frontend application for **Shuufare**, a driver recruitment and fleet management platform.  
+Built with React and Vite to provide a fast, responsive, and user-friendly experience for driver registration, application tracking, and platform interaction.
 
-Currently, two official plugins are available:
+## Tech Stack
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- React.js
+- Vite
+- JavaScript
+- CSS / Tailwind CSS
+- Axios (API communication)
+- React Router (Navigation)
 
-## React Compiler
+## Features
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- Driver registration interface
+- QR-based registration access
+- Multi-language support (English / Amharic)
+- Responsive user interface
+- Application status tracking
+- Integration with Shuufare backend APIs
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Project Structure
