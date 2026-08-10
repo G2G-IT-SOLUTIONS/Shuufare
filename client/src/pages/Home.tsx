@@ -8,10 +8,10 @@ import {
   Flag
 } from 'lucide-react'
 import Hero from '../components/home/Hero'
-import HowItWorks from '../components/home/HowItWorks'
+//import HowItWorks from '../components/home/HowItWorks'
 import Benefits from '../components/home/Benefits'
-import Testimonials from '../components/home/Testimonials'
-import FAQ from '../components/home/FAQ'
+//import Testimonials from '../components/home/Testimonials'
+//import FAQ from '../components/home/FAQ'
 import Partners from '../components/home/Partners'
 import QRRegistration from '../components/home/QRRegistration'
 import CTASection from '../components/home/CTASection'
@@ -116,10 +116,10 @@ export default function Home() {
   return (
     <main className="bg-white text-slate-950">
       <Hero />
-      <HowItWorks />
-      <Testimonials />
+      {/* <HowItWorks /> */}
+      {/* <Testimonials /> */}
       <Benefits />
-      <FAQ />
+      {/* <FAQ /> */} 
 
       {/* Who Can Apply Section - Improved with Lucide Icons */}
       <section id="who-can-apply" className="section-divider relative overflow-hidden bg-linear-to-b from-slate-50 via-white to-slate-50/50 py-24 sm:py-32">
@@ -190,9 +190,8 @@ export default function Home() {
           </div>
         </div>
       </section>
-
-      <Partners />
       <QRRegistration />
+      <Partners />
       <CTASection />
     </main>
   )

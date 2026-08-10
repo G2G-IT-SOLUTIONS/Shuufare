@@ -14,10 +14,10 @@ export default function CTASection() {
           <div className="max-w-2xl">
             <div className="flex items-center gap-3 text-2xl font-bold tracking-tight text-white sm:text-3xl lg:text-4xl">
               <Rocket className="h-7 w-7 text-emerald-400" />
-              Ready to Start your Journey?
+Drive With Yango,Grow with Shuufare
             </div>
             <p className="mt-2 text-base text-slate-400 sm:text-lg">
-              Join the movement today and drive your own future.
+Start Your Journey Today!
             </p>
           </div>
 

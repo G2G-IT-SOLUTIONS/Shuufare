@@ -2,33 +2,55 @@ import { Zap, Shield, Wrench, Heart } from 'lucide-react'
 
 const benefits = [
   {
-    title: 'Electric Vehicles',
-    description: 'Drive modern, eco-friendly EVs. Save on fuel and drive the future.',
+    title: 'Vehicle Ownership',
+    //description: 'Drive modern, eco-friendly EVs. Save on fuel and drive the future.',
     icon: Zap,
     accent: 'bg-emerald-500',
     accentLight: 'bg-emerald-50 text-emerald-600',
   },
   {
-    title: 'Insurance Coverage',
-    description: "You're fully protected while working. Peace of mind for every mile.",
+    title: 'Vehicle Insurance',
+    //description: "You're fully protected while working. Peace of mind for every mile.",
     icon: Shield,
     accent: 'bg-cyan-500',
     accentLight: 'bg-cyan-50 text-cyan-600',
   },
   {
-    title: 'Maintenance Covered',
-    description: 'No repair stress, no hidden costs. We handle the technical side.',
+    title: 'Fleet and Operation management',
+    //description: 'No repair stress, no hidden costs. We handle the technical side.',
     icon: Wrench,
     accent: 'bg-violet-500',
     accentLight: 'bg-violet-50 text-violet-600',
   },
   {
-    title: 'Inclusive Opportunities',
-    description: 'Women, people with disabilities, commercial drivers, youth, and seniors are welcome.',
+    title: 'Company Owned Electric Vehicle',
+   // description: 'Women, people with disabilities, commercial drivers, youth, and seniors are welcome.',
     icon: Heart,
     accent: 'bg-amber-500',
     accentLight: 'bg-amber-50 text-amber-600',
   },
+   {
+    title: 'Driver Micro-finance for operational and personal Needs',
+   // description: 'Women, people with disabilities, commercial drivers, youth, and seniors are welcome.',
+    icon: Heart,
+    accent: 'bg-amber-500',
+    accentLight: 'bg-amber-50 text-amber-600',
+  },
+   {
+    title: 'Company Owned Electric Vehicle',
+   // description: 'Women, people with disabilities, commercial drivers, youth, and seniors are welcome.',
+    icon: Heart,
+    accent: 'bg-amber-500',
+    accentLight: 'bg-amber-50 text-amber-600',
+  },
+  {
+    title: 'Salary Based Employment',
+   // description: 'Women, people with disabilities, commercial drivers, youth, and seniors are welcome.',
+    icon: Heart,
+    accent: 'bg-amber-500',
+    accentLight: 'bg-amber-50 text-amber-600',
+  },
+
 ]
 
 export default function Benefits() {
@@ -74,7 +96,6 @@ export default function Benefits() {
                   <h3 className="mt-4 text-lg font-bold text-slate-950 transition-colors duration-200 group-hover:text-emerald-700">
                     {benefit.title}
                   </h3>
-                  <p className="mt-3 text-sm leading-7 text-slate-600">{benefit.description}</p>
                 </article>
               )
             })}
