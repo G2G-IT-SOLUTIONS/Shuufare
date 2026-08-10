@@ -38,9 +38,9 @@ export default function Navbar() {
           href="#home"
           className="group flex items-center gap-3 rounded-full px-1 py-1 transition-all duration-300 hover:scale-[1.03]"
           aria-label="Shuufare home"
-        >
-          <img
-            src={logo}
+        >      
+        <img
+             src={logo}
             alt="Shuufare logo"
             className="h-14 w-auto max-w-45 rounded-2xl object-contain transition-all duration-300 group-hover:brightness-110 sm:h-16"
           />

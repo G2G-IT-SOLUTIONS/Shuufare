@@ -66,13 +66,34 @@ export const faydaCallback = async (req, res, next) => {
 
     console.log("JWT verified successfully");
     console.log("User subject (fayda_id):", payload.sub);
+    console.log("========== FAYDA JWT PAYLOAD ==========");
+console.log(JSON.stringify(payload, null, 2));
+console.log("=======================================");
 
     // Find or create user in PostgreSQL
-    const user = await findOrCreateUser(payload.sub, {
-      email: payload.email || null,
-      name: payload.name || null
-    });
+   const user = await findOrCreateUser(payload.sub, {
+  email: payload.email || null,
+  name: payload.name || null,
 
+  phone:
+    payload.phone_number ||
+    payload.phone ||
+    payload.phone_no ||
+    null,
+
+  gender: payload.gender || null,
+
+  location:
+    payload.address ||
+    payload.address_json ||
+    null,
+
+  photo_url:
+    payload.picture ||
+    payload.picture_url ||
+    payload.photo ||
+    null,
+});
     console.log("User found/created:", user.id);
 
     // Set up session
@@ -80,7 +101,7 @@ export const faydaCallback = async (req, res, next) => {
     req.session.faydaId = user.fayda_id;
 
     // Redirect to React frontend
-    const frontendUrl = process.env.CLIENT_URL || 'http://localhost:3000';
+    const frontendUrl = process.env.CLIENT_URL || 'http://localhost:5173';
     res.redirect(`${frontendUrl}/auth/callback?success=true`);
   } catch (error) {
     console.error(
@@ -89,7 +110,7 @@ export const faydaCallback = async (req, res, next) => {
     );
 
     // Redirect to frontend with error
-    const frontendUrl = process.env.CLIENT_URL || 'http://localhost:3000';
+    const frontendUrl = process.env.CLIENT_URL || 'http://localhost:5173';
     res.redirect(`${frontendUrl}/auth/callback?success=false&error=${encodeURIComponent(error.message)}`);
   }
 };

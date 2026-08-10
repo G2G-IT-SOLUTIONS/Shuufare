@@ -56,6 +56,7 @@ model User {
   phone                       String?
   alternative_phone            String?
   email                       String?
+  photo_url                   String?
   age                         Int?
   gender                      String?
   has_license                 String?

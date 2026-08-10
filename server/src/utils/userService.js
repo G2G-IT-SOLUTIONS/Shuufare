@@ -1,3 +1,4 @@
+
 import prisma from '../db/prismaClient.js';
 
 export async function findOrCreateUser(faydaId, additionalData = {}) {
@@ -8,26 +9,57 @@ export async function findOrCreateUser(faydaId, additionalData = {}) {
     });
 
     if (user) {
-      // Update user with any new data if provided
+      // Update existing user if additional data is provided
       if (Object.keys(additionalData).length > 0) {
+        const data = {
+          ...additionalData,
+          updated_at: new Date()
+        };
+
+        // If location is an object, convert it to JSON string
+        // because the Prisma location field is expected to be a String.
+        if (
+          data.location &&
+          typeof data.location === 'object'
+        ) {
+          data.location = JSON.stringify(data.location);
+        }
+
         user = await prisma.user.update({
           where: { fayda_id: faydaId },
-          data: {
-            ...additionalData,
-            updated_at: new Date()
-          }
+          data
         });
       }
+
       return user;
     }
 
-    // Create new user with basic info from JWT
+    // Create new user with basic information
+    const createData = {
+      fayda_id: faydaId,
+      email: additionalData.email || null,
+      name: additionalData.name || null,
+      photo_url: additionalData.photo_url || null
+    };
+
+    // Include additional fields when creating the user
+    if (additionalData.phone !== undefined) {
+      createData.phone = additionalData.phone;
+    }
+
+    if (additionalData.gender !== undefined) {
+      createData.gender = additionalData.gender;
+    }
+
+    if (additionalData.location !== undefined) {
+      createData.location =
+        typeof additionalData.location === 'object'
+          ? JSON.stringify(additionalData.location)
+          : additionalData.location;
+    }
+
     user = await prisma.user.create({
-      data: {
-        fayda_id: faydaId,
-        email: additionalData.email || null,
-        name: additionalData.name || null
-      }
+      data: createData
     });
 
     return user;
@@ -39,13 +71,24 @@ export async function findOrCreateUser(faydaId, additionalData = {}) {
 
 export async function updateUserProfile(userId, profileData) {
   try {
+    const data = {
+      ...profileData,
+      updated_at: new Date()
+    };
+
+    // Convert location object to JSON string if necessary
+    if (
+      data.location &&
+      typeof data.location === 'object'
+    ) {
+      data.location = JSON.stringify(data.location);
+    }
+
     const user = await prisma.user.update({
       where: { id: userId },
-      data: {
-        ...profileData,
-        updated_at: new Date()
-      }
+      data
     });
+
     return user;
   } catch (error) {
     console.error('Error in updateUserProfile:', error);

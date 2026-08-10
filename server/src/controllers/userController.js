@@ -3,7 +3,6 @@ import prisma from '../db/prismaClient.js';
 
 export const submitUserProfile = async (req, res, next) => {
   try {
-    // Check if user is authenticated via session
     if (!req.session.userId) {
       return res.status(401).json({
         error: 'Unauthorized. Please authenticate first.',
@@ -71,6 +70,7 @@ export const getUserProfile = async (req, res, next) => {
         fayda_id: true,
         name: true,
         email: true,
+        photo_url: true,
         phone: true,
         alternative_phone: true,
         age: true,
