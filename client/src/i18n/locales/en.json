@@ -66,6 +66,9 @@
     "description": "We work with leading organizations to deliver the best experience."
   },
   "authCallback": {
+    "verificationSuccessMessage": "Your identity has been successfully verified via Fayda National ID.",
+    "completeRequiredFields": "Please complete the required fields to proceed.",
+    "driverApplication": "Driver Application",
     "verifyingIdentity": "Verifying your identity",
     "verifyingDescription": "We're connecting with Fayda to verify your National ID. This will only take a moment…",
     "verificationSuccessful": "Verification Successful",
