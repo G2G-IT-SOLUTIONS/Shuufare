@@ -24,7 +24,7 @@ export default function ApplicationStatus() {
           Back to Home
         </a>
 
-        <div className="overflow-hidden rounded-[2.5rem] border border-slate-200/80 bg-white p-1.5 shadow-2xl shadow-slate-950/6">
+        <div className="overflow-hidden rounded-[2.5rem] border border-gray-950/80 bg-white p-1.5 shadow-2xl shadow-slate-950/6">
           <div className="rounded-4xl bg-linear-to-b from-slate-50/80 to-white p-7 sm:p-10 lg:p-12">
             {/* Header */}
             <div className="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-emerald-50 text-emerald-600 mb-4">
@@ -61,7 +61,7 @@ export default function ApplicationStatus() {
               </div>
 
               {/* Progress Card */}
-              <div className="rounded-4xl border border-slate-200/80 bg-white p-7">
+              <div className="rounded-4xl border border-gray-950/80 bg-white p-7">
                 <h2 className="font-display text-xl font-bold text-slate-950">Progress</h2>
                 <p className="mt-1 text-sm text-slate-500">Your application is being reviewed</p>
 
@@ -81,14 +81,14 @@ export default function ApplicationStatus() {
                               isComplete
                                 ? 'bg-emerald-500 text-white shadow-md shadow-emerald-500/20'
                                 : isCurrent
-                                  ? 'bg-slate-900 text-white shadow-md shadow-slate-900/20 ring-4 ring-slate-200/50'
+                                  ? 'bg-slate-900 text-white shadow-md shadow-slate-900/20 ring-4 ring-gray-950/50'
                                   : 'bg-slate-100 text-slate-400'
                             }`}
                           >
                             <Icon className={`h-5 w-5 ${isCurrent ? 'animate-spin' : ''}`} />
                           </div>
                           {!isLast && (
-                            <div className={`my-1 h-8 w-0.5 rounded-full ${isComplete ? 'bg-emerald-300' : 'bg-slate-200'}`} />
+                            <div className={`my-1 h-8 w-0.5 rounded-full ${isComplete ? 'bg-emerald-300' : 'bg-gray-950'}`} />
                           )}
                         </div>
 

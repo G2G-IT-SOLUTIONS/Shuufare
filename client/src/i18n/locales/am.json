@@ -1,0 +1,68 @@
+{
+  "navbar": {
+    "services": "አገልግሎቶች",
+    "contact": "ያግኙን",
+    "startApplication": "መጠየቅ ጀምር",
+    "language": "ቋንቋ"
+  },
+  "hero": {
+    "title": "ከጉዟችሁ በላይ አጋር",
+    "description": "አሽከሮች ባለቤትነት፣ ቁጠባ እና አሽከሮች አስተዳደር መፍትሄዎች ለአሽከሮች ወዳጆች የተሻለ ወደፊት ለመገንባት",
+    "registerWithNationalId": "በብሔራዊ መለያ መዝገብ",
+    "learnMore": "ተጨማሪ ይወቱ"
+  },
+  "benefits": {
+    "title": "ሹፋሬ ለምን?",
+    "subtitle": "ለስኬት የሚያስፈልግዎትን",
+    "highlight": "እንደምን",
+    "vehicleOwnership": "አሽከሮች ባለቤትነት",
+    "vehicleInsurance": "አሽከሮች ኢንሹራንስ",
+    "fleetManagement": "አሽከሮች እና ክርክር አስተዳደር",
+    "companyEV": "የኩባንያ የኤሌክትሪክ አሽከሮች",
+    "microFinance": "ለአሽከሮች የሥራ እና የግል ቁጠባ",
+    "salaryEmployment": "ቀጠሮ መጠን ስራ"
+  },
+  "home": {
+    "whoCanApply": "ማን ሊመጣው ይችላል?",
+    "whoCanApplyDescription": "ለእያንዳንዱ የሥራ እድሎችን መፍጠር እናምናለን። የአሽከሮች ማህበራችንን ለመቀላቀል እንዴት እንደሚማርዱ ይመልከቱ።",
+    "women": "የጸንሰው ገቢ ፈልጎ የሚፈልጉ ሴቶች",
+    "womenDescription": "ለሴቶች የተለጠፈ ተስማሚ እድሎች",
+    "disabilities": "አሽከር ሊነዱ የሚችሉ የተለያዩ ችሎታ ያላቸው ሰዎች",
+    "disabilitiesDescription": "በዝግጁነት የተዘጋጁ አስተዳደራዊ ሚናዎች",
+    "youth": "ስራ ፈልጎ የሚፈልጉ ወጣቶች",
+    "youthDescription": "ለሙያ ጉዟችሁ የሚሆን መነሻ ነጥብ",
+    "older": "የአሽከር አስተማሪ ባለሙያ በሽቱ ሰዎች",
+    "olderDescription": "የአሽከር አስተማሪ እውቀትዎን ይጠቀሙ",
+    "license": "ልክ የአሽከር ፈቃድ ያለው ማንም",
+    "licenseDescription": "ሁሉም የፈቃድ ባለቤቶች መመዝገብ ይችላሉ",
+    "residents": "የኢትዮጵያ ነዋሪዎች",
+    "residentsDescription": "ለሁሉም የኢትዮጵያ ነዋሪዎች ክፍት"
+  },
+  "cta": {
+    "title": "ከያንጎ አሽከር፣ ከሹፋሬ ይውጡ",
+    "subtitle": "ጉዟችሁን ዛሬ ጀምር!",
+    "startApplication": "መጠየቅ ጀምር",
+    "contact": "ያግኙን",
+    "empoweringDrivers": "አሽከሮችን ማበልጸግ",
+    "empoweringDriversDescription": "ጸንሰው ገቢ፣ ተከታታይ ድጋፍ እና የተሻለ ወደፊት ለመገንባት መሰረት።",
+    "address": "አድራሻ",
+    "addressText": "አዲስ አበባ፣ ኢትዮጵያ",
+    "phone": "+251 911 123 456",
+    "email": "info@shuufare.com",
+    "telegram": "@shuufare_eth",
+    "copyright": "ሁሉም መብቶች የተጠበቁ ናቸው"
+  },
+  "qrRegistration": {
+    "title": "በስካን ይመዝገቡ",
+    "description": "ስልክዎን በመጠቀም የመመዝገብ ሂደትን በፍጥነት ይጀምሩ።",
+    "scanWithCamera": "በካሜራ ስካን",
+    "scanToRegister": "በስካን ይመዝገቡ",
+    "scanCodeAndContinue": "ኮዱን ስካን እና በስልክዎ ይቀጥሩ።",
+    "qrCodeDescription": "QR ኮድ የመመዝገብ ሂደትን በፍጥነት ይከፍታል፣ ሂደቱን ቀላል እና ለሞባይል ተስማሚ ያደርገዋል።"
+  },
+  "partners": {
+    "partners": "አጋሮች",
+    "title": "የእኛ ታማኝ አጋሮች",
+    "description": "ምርጥ ልምድ ለማስገባት ከቀድሞ ባሉ ድርጅቶች ጋር እንሰራለን።"
+  }
+}

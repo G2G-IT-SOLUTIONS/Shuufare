@@ -1,107 +1,146 @@
-import { Zap, Shield, Wrench, Heart } from 'lucide-react'
-
-const benefits = [
-  {
-    title: 'Vehicle Ownership',
-    //description: 'Drive modern, eco-friendly EVs. Save on fuel and drive the future.',
-    icon: Zap,
-    accent: 'bg-emerald-500',
-    accentLight: 'bg-emerald-50 text-emerald-600',
-  },
-  {
-    title: 'Vehicle Insurance',
-    //description: "You're fully protected while working. Peace of mind for every mile.",
-    icon: Shield,
-    accent: 'bg-cyan-500',
-    accentLight: 'bg-cyan-50 text-cyan-600',
-  },
-  {
-    title: 'Fleet and Operation management',
-    //description: 'No repair stress, no hidden costs. We handle the technical side.',
-    icon: Wrench,
-    accent: 'bg-violet-500',
-    accentLight: 'bg-violet-50 text-violet-600',
-  },
-  {
-    title: 'Company Owned Electric Vehicle',
-   // description: 'Women, people with disabilities, commercial drivers, youth, and seniors are welcome.',
-    icon: Heart,
-    accent: 'bg-amber-500',
-    accentLight: 'bg-amber-50 text-amber-600',
-  },
-   {
-    title: 'Driver Micro-finance for operational and personal Needs',
-   // description: 'Women, people with disabilities, commercial drivers, youth, and seniors are welcome.',
-    icon: Heart,
-    accent: 'bg-amber-500',
-    accentLight: 'bg-amber-50 text-amber-600',
-  },
-   {
-    title: 'Company Owned Electric Vehicle',
-   // description: 'Women, people with disabilities, commercial drivers, youth, and seniors are welcome.',
-    icon: Heart,
-    accent: 'bg-amber-500',
-    accentLight: 'bg-amber-50 text-amber-600',
-  },
-  {
-    title: 'Salary Based Employment',
-   // description: 'Women, people with disabilities, commercial drivers, youth, and seniors are welcome.',
-    icon: Heart,
-    accent: 'bg-amber-500',
-    accentLight: 'bg-amber-50 text-amber-600',
-  },
-
-]
+import {
+  Zap,
+  Shield,
+  Wrench,
+  Heart,
+  Wallet,
+  BriefcaseBusiness,
+} from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 export default function Benefits() {
+  const { t } = useTranslation();
+
+  const benefits = [
+    {
+      title: t("benefits.vehicleOwnership"),
+      icon: Zap,
+      accent: "bg-emerald-500",
+      accentLight: "bg-emerald-50 text-emerald-600",
+    },
+    {
+      title: t("benefits.vehicleInsurance"),
+      icon: Shield,
+      accent: "bg-cyan-500",
+      accentLight: "bg-cyan-50 text-cyan-600",
+    },
+    {
+      title: t("benefits.fleetManagement"),
+      icon: Wrench,
+      accent: "bg-violet-500",
+      accentLight: "bg-violet-50 text-violet-600",
+    },
+    {
+      title: t("benefits.companyEV"),
+      icon: Heart,
+      accent: "bg-amber-500",
+      accentLight: "bg-amber-50 text-amber-600",
+    },
+    {
+      title: t("benefits.microFinance"),
+      icon: Wallet,
+      accent: "bg-blue-500",
+      accentLight: "bg-blue-50 text-blue-600",
+    },
+    {
+      title: t("benefits.salaryEmployment"),
+      icon: BriefcaseBusiness,
+      accent: "bg-rose-500",
+      accentLight: "bg-rose-50 text-rose-600",
+    },
+  ];
+
   return (
-    <section id="benefits" className="section-divider relative bg-white py-24 sm:py-32 overflow-hidden">
+    <section
+      id="benefits"
+      className="relative overflow-hidden bg-white py-20 sm:py-24"
+    >
+      
       {/* Background accents */}
-      <div className="absolute -left-32 top-1/3 h-80 w-80 rounded-full bg-emerald-50/60 blur-3xl" />
-      <div className="absolute -right-32 bottom-1/4 h-64 w-64 rounded-full bg-cyan-50/40 blur-3xl" />
+      <div
+        className="pointer-events-none absolute -left-40 top-1/3 h-72 w-72 rounded-full bg-emerald-50/70 blur-3xl"
+        aria-hidden="true"
+      />
 
-      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="grid gap-14 lg:grid-cols-[0.85fr_1.15fr] lg:items-start">
+      <div
+        className="pointer-events-none absolute -right-40 bottom-1/4 h-72 w-72 rounded-full bg-cyan-50/50 blur-3xl"
+        aria-hidden="true"
+      />
+
+      <div className="relative mx-auto max-w-7xl px-6 sm:px-8 lg:px-12">
+        <div className="grid gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:items-center lg:gap-16">
+          
+          {/* Section heading */}
           <div className="max-w-xl">
-            <p className="text-3xl font-bold text-center tracking-tight text-slate-950 sm:text-4xl lg:text-left lg:text-5xl">
-              Why Shuufare?
+            <p className="text-center text-3xl font-bold tracking-tight text-slate-950 sm:text-4xl lg:text-left lg:text-5xl">
+              {t("benefits.title")}
             </p>
-              <div className="mx-auto mt-3 h-1 w-14 rounded-full bg-teal-600" />
 
-            <h2 className="mt-2 font-display text-3xl  tracking-tight text-slate-950 sm:text-4xl lg:text-5xl">
-              We provide the tools you need to{' '}
-              <span className="text-linear-warm">succeed</span>.
-            </h2>
-       
+            <div className="mx-auto mt-4 h-1 w-12 rounded-full bg-amber-600 lg:mx-0" />
+
+           
+              <div className="mt-8 flex items-center gap-3">
+              <div className="flex -space-x-2">
+                <span className="h-8 w-8 rounded-full border-2 border-white bg-emerald-500" />
+                <span className="h-8 w-8 rounded-full border-2 border-white bg-cyan-500" />
+                <span className="h-8 w-8 rounded-full border-2 border-white bg-violet-500" />
+              </div>
+
+              <span className="text-sm font-medium text-slate-600">
+                {t(
+                  "benefits.subtitle"
+                )
+                }
+                <span className=" text-linear-warm ml-1">
+                {t ("benefits.highlight")}.
+              </span>
+              </span>
+            </div>
           </div>
-          <div className="grid gap-5 sm:grid-cols-2">
+
+          {/* Benefits */}
+          <div className="grid gap-4 sm:grid-cols-2">
             {benefits.map((benefit, index) => {
-              const Icon = benefit.icon
+              const Icon = benefit.icon;
+
               return (
                 <article
-                  key={benefit.title}
-                  className="hover-lift group relative overflow-hidden rounded-4xl border border-slate-200/80 bg-linear-to-b from-white to-slate-50/30 p-7 shadow-sm"
+                  key={`${benefit.title}-${index}`}
+                  className="group relative overflow-hidden rounded-3xl border border-slate-200 bg-white p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-slate-300 hover:shadow-lg"
                 >
-                  {/* Subtle corner glow on hover */}
-                  <div className={`absolute -right-8 -top-8 h-24 w-24 rounded-full ${benefit.accent} opacity-0 blur-2xl transition-opacity duration-500 group-hover:opacity-10`} />
+                  {/* Subtle hover glow */}
+                  <div
+                    className={`pointer-events-none absolute -right-10 -top-10 h-28 w-28 rounded-full ${benefit.accent} opacity-0 blur-3xl transition-opacity duration-500 group-hover:opacity-10`}
+                    aria-hidden="true"
+                  />
 
-                  <div className={`inline-flex h-14 w-14 items-center justify-center rounded-2xl ${benefit.accentLight} transition-transform duration-300 group-hover:scale-110`}>
-                    <Icon className="h-6 w-6" />
+                  <div className="relative flex items-start justify-between">
+                    <div
+                      className={`flex h-12 w-12 items-center justify-center rounded-2xl ${benefit.accentLight} transition-transform duration-300 group-hover:scale-105`}
+                    >
+                      <Icon
+                        className="h-5 w-5"
+                        strokeWidth={2}
+                        aria-hidden="true"
+                      />
+                    </div>
+
+                    <span className="text-xs font-bold tracking-[0.2em] text-slate-300">
+                      {String(index + 1).padStart(2, "0")}
+                    </span>
                   </div>
 
-                  <div className="mt-2 text-xs font-bold uppercase tracking-[0.25em] text-slate-400">
-                    0{index + 1}
-                  </div>
-
-                  <h3 className="mt-4 text-lg font-bold text-slate-950 transition-colors duration-200 group-hover:text-emerald-700">
+                  <h3 className="relative mt-6 text-lg font-bold leading-7 text-slate-950 transition-colors duration-200 group-hover:text-emerald-700">
                     {benefit.title}
                   </h3>
+
+                  <div className="mt-5 h-px w-8 bg-slate-200 transition-all duration-300 group-hover:w-12 group-hover:bg-slate-400" />
                 </article>
-              )
+              );
             })}
           </div>
         </div>
       </div>
     </section>
-  )
+  );
 }

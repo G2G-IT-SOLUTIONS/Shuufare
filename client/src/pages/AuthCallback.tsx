@@ -68,7 +68,7 @@ export default function AuthCallback() {
       <div className="absolute -right-40 bottom-1/3 h-80 w-80 rounded-full bg-teal-50/40 blur-3xl" />
 
       <div className="relative w-full max-w-lg">
-        <div className="overflow-hidden rounded-[2.5rem] border border-slate-200/80 bg-white p-1.5 shadow-2xl shadow-slate-950/6">
+        <div className="overflow-hidden rounded-[2.5rem] border border-gray-950/80 bg-white p-1.5 shadow-2xl shadow-slate-950/6">
           <div className="rounded-4xl bg-linear-to-b from-white to-slate-50/30 p-8 sm:p-10">
 
             {/* Loading State */}
@@ -108,7 +108,7 @@ export default function AuthCallback() {
                 </p>
 
                 {/* User Info Card */}
-                <div className="mt-8 w-full rounded-3xl border border-slate-200/80 bg-linear-to-br from-slate-900 via-slate-900 to-slate-800 p-6 text-left shadow-xl shadow-slate-950/10">
+                <div className="mt-8 w-full rounded-3xl border border-gray-950/80 bg-linear-to-br from-slate-900 via-slate-900 to-slate-800 p-6 text-left shadow-xl shadow-slate-950/10">
                   <div className="flex items-center gap-2 mb-5">
                     <div className="h-2 w-2 rounded-full bg-emerald-400 animate-pulse" />
                     <span className="text-xs font-semibold uppercase tracking-[0.22em] text-emerald-400">
@@ -192,7 +192,7 @@ export default function AuthCallback() {
                 <button
                   type="button"
                   onClick={handleRetry}
-                  className="group mt-8 inline-flex w-full items-center justify-center gap-2.5 rounded-full border border-slate-200 bg-white px-7 py-4 text-sm font-semibold text-slate-900 shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:shadow-md"
+                  className="group mt-8 inline-flex w-full items-center justify-center gap-2.5 rounded-full border border-gray-950 bg-white px-7 py-4 text-sm font-semibold text-slate-900 shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:shadow-md"
                 >
                   <RotateCcw className="h-4 w-4 transition-transform duration-200 group-hover:-rotate-180" />
                   Try Again

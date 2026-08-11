@@ -55,11 +55,11 @@ export default function HowItWorks() {
             return (
               <article
                 key={step.number}
-                className="hover-lift group relative rounded-[4xl] border border-slate-200/80 bg-linear-to-b from-white to-slate-50/50 p-7 shadow-sm"
+                className="hover-lift group relative rounded-[4xl] border border-gray-950/80 bg-linear-to-b from-white to-slate-50/50 p-7 shadow-sm"
               >
                 {/* Step connector line (hidden on last) */}
                 {i < steps.length - 1 && (
-                  <div className="absolute -right-3 top-1/2 hidden h-px w-6 bg-slate-200 xl:block" />
+                  <div className="absolute -right-3 top-1/2 hidden h-px w-6 bg-gray-950 xl:block" />
                 )}
 
                 <div className={`inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-linear-to-br ${step.color} text-white shadow-lg ${step.shadow} transition-transform duration-300 group-hover:scale-110`}>

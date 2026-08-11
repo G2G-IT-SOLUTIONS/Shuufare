@@ -1,19 +1,22 @@
 import { useState, useEffect } from 'react'
+import { useTranslation } from 'react-i18next'
 import { ChevronDown, Menu, X, Globe } from 'lucide-react'
 import logo from '../../assets/logo.png'
 
-const navigationLinks = [
-  //{ label: 'Home', href: '#home' },
-  //{ label: 'How It Works', href: '#how-it-works' },
-  { label: 'Services', href: '#benefits' },
-  //{ label: 'FAQ', href: '#faq' },
-  { label: 'Contact us', href: '#contact' },
-]
-
 export default function Navbar() {
+  const { t, i18n } = useTranslation()
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
-  const [activeLanguage, setActiveLanguage] = useState('en')
   const [scrolled, setScrolled] = useState(false)
+
+  const navigationLinks = [
+    { label: t('navbar.services'), href: '#benefits' },
+    { label: t('navbar.contact'), href: '#contact' },
+  ]
+
+  const handleLanguageChange = (lang) => {
+    i18n.changeLanguage(lang)
+    localStorage.setItem('language', lang)
+  }
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20)
@@ -25,7 +28,7 @@ export default function Navbar() {
     <header
       className={`sticky top-0 z-50 transition-all duration-500 ${
         scrolled
-          ? 'border-b border-slate-200/60 bg-white/85 shadow-lg shadow-slate-950/3 backdrop-blur-2xl'
+          ? 'border-b border-gray-500/60 bg-white/85 shadow-lg shadow-slate-950/3 backdrop-blur-2xl'
           : 'bg-white/60 backdrop-blur-xl'
       }`}
     >
@@ -35,19 +38,19 @@ export default function Navbar() {
       >
         {/* Logo */}
         <a
-          href="#home"
+          href="/"
           className="group flex items-center gap-3 rounded-full px-1 py-1 transition-all duration-300 hover:scale-[1.03]"
           aria-label="Shuufare home"
         >      
         <img
              src={logo}
             alt="Shuufare logo"
-            className="h-14 w-auto max-w-45 rounded-2xl object-contain transition-all duration-300 group-hover:brightness-110 sm:h-16"
+            className="h-16 w-auto max-w-none rounded-2xl  transition-all duration-300 group-hover:brightness-110 "
           />
         </a>
 
         {/* Desktop Navigation */}
-        <div className="hidden items-center gap-0.5 rounded-full border border-slate-200/80 bg-slate-50/80 p-1 backdrop-blur-sm lg:flex">
+        <div className="hidden items-center gap-0.5 rounded-full border border-gray-500 bg-slate-50/80 p-1 backdrop-blur-sm lg:flex">
           {navigationLinks.map((link) => (
             <a
               key={link.label}
@@ -62,14 +65,14 @@ export default function Navbar() {
         {/* Desktop Actions */}
         <div className="hidden items-center gap-3 lg:flex">
           {/* Language Switcher */}
-          <div className="flex items-center gap-1.5 rounded-full border border-slate-200/80 bg-white/90 p-1 shadow-sm backdrop-blur-sm">
+          <div className="flex items-center gap-1.5 rounded-full border border-gray-500 bg-white/90 p-1 shadow-sm backdrop-blur-sm ">
             <Globe className="ml-2 h-3.5 w-3.5 text-slate-400" />
             <button
               type="button"
-              aria-pressed={activeLanguage === 'en'}
-              onClick={() => setActiveLanguage('en')}
+              aria-pressed={i18n.language === 'en'}
+              onClick={() => handleLanguageChange('en')}
               className={`rounded-full px-3 py-1.5 text-sm font-semibold transition-all duration-300 ${
-                activeLanguage === 'en'
+                i18n.language === 'en'
                   ? 'bg-slate-900 text-white shadow-md shadow-slate-900/20'
                   : 'text-slate-500 hover:text-slate-900'
               }`}
@@ -78,10 +81,10 @@ export default function Navbar() {
             </button>
             <button
               type="button"
-              aria-pressed={activeLanguage === 'am'}
-              onClick={() => setActiveLanguage('am')}
+              aria-pressed={i18n.language === 'am'}
+              onClick={() => handleLanguageChange('am')}
               className={`rounded-full px-3 py-1.5 text-sm font-semibold transition-all duration-300 ${
-                activeLanguage === 'am'
+                i18n.language === 'am'
                   ? 'bg-slate-900 text-white shadow-md shadow-slate-900/20'
                   : 'text-slate-500 hover:text-slate-900'
               }`}
@@ -93,9 +96,9 @@ export default function Navbar() {
           {/* CTA Button */}
           <a
             href="/rrrr"
-            className="btn-shimmer inline-flex items-center gap-2 rounded-full bg-linear-to-r from-emerald-600 to-teal-600 px-6 py-2.5 text-sm font-semibold text-white shadow-lg shadow-emerald-600/25 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-xl hover:shadow-emerald-600/30"
+            className="btn-shimmer inline-flex items-center gap-2 rounded-full bg-amber-500 px-6 py-2.5 text-sm font-semibold text-black shadow-lg shadow-emerald-600/25 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-xl hover:shadow-emerald-600/30 border border-amber-500"
           >
-            Start Application
+            {t('navbar.startApplication')}
             <ChevronDown className="h-4 w-4 -rotate-90 opacity-80" />
           </a>
         </div>
@@ -103,10 +106,10 @@ export default function Navbar() {
         {/* Mobile Menu Button */}
         <button
           type="button"
-          className={`inline-flex h-11 w-11 items-center justify-center rounded-2xl border transition-all duration-300 lg:hidden ${
+          className={`inline-flex h-11 w-11 items-center justify-center rounded-2xl border border-gray-500 transition-all duration-300 lg:hidden ${
             mobileMenuOpen
               ? 'border-emerald-200 bg-emerald-50 text-emerald-700'
-              : 'border-slate-200 bg-white text-slate-900 shadow-sm hover:bg-slate-50'
+              : 'border-gray-500 bg-white text-slate-900 shadow-sm hover:bg-slate-50'
           }`}
           aria-label={mobileMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}
           aria-expanded={mobileMenuOpen}
@@ -123,12 +126,12 @@ export default function Navbar() {
       {/* Mobile Menu */}
       <div
         id="mobile-navigation"
-        className={`border-t border-slate-200/60 bg-white/98 px-4  backdrop-blur-2xl transition-all duration-400 ease-out lg:hidden ${
+        className={`border-t border-gray-500/60 bg-white/98 px-4  backdrop-blur-2xl transition-all duration-400 ease-out lg:hidden ${
           mobileMenuOpen ? 'max-h-150 opacity-100 pb-5' : 'pointer-events-none max-h-0 overflow-hidden opacity-0'
         }`}
       >
         <div className="mx-auto flex max-w-7xl flex-col gap-3">
-          <div className="grid gap-0.5 rounded-3xl border border-slate-200/80 bg-slate-50/70 p-2">
+          <div className="grid gap-0.5 rounded-3xl border border-gray-500/80 bg-slate-50/70 p-2">
             {navigationLinks.map((link, i) => (
               <a
                 key={link.label}
@@ -142,20 +145,20 @@ export default function Navbar() {
             ))}
           </div>
 
-          <div className="flex items-center justify-between gap-3 rounded-3xl border border-slate-200/80 bg-white p-3">
+          <div className="flex items-center justify-between gap-3 rounded-3xl border border-gray-500/80 bg-white p-3">
             <div className="flex items-center gap-2.5 text-sm font-medium text-slate-500">
               <span className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-emerald-50 text-emerald-600 ring-1 ring-emerald-100/50">
                 <Globe className="h-4 w-4" />
               </span>
-              Language
+              {t('navbar.language')}
             </div>
-            <div className="flex items-center rounded-full border border-slate-200/80 bg-slate-50 p-1">
+            <div className="flex items-center rounded-full border border-gray-500/80 bg-slate-50 p-1">
               <button
                 type="button"
-                aria-pressed={activeLanguage === 'en'}
-                onClick={() => setActiveLanguage('en')}
+                aria-pressed={i18n.language === 'en'}
+                onClick={() => handleLanguageChange('en')}
                 className={`rounded-full px-3 py-1.5 text-sm font-semibold transition-all duration-300 ${
-                  activeLanguage === 'en'
+                  i18n.language === 'en'
                     ? 'bg-slate-900 text-white shadow-sm'
                     : 'text-slate-600 hover:text-slate-900'
                 }`}
@@ -164,10 +167,10 @@ export default function Navbar() {
               </button>
               <button
                 type="button"
-                aria-pressed={activeLanguage === 'am'}
-                onClick={() => setActiveLanguage('am')}
+                aria-pressed={i18n.language === 'am'}
+                onClick={() => handleLanguageChange('am')}
                 className={`rounded-full px-3 py-1.5 text-sm font-semibold transition-all duration-300 ${
-                  activeLanguage === 'am'
+                  i18n.language === 'am'
                     ? 'bg-slate-900 text-white shadow-sm'
                     : 'text-slate-600 hover:text-slate-900'
                 }`}
@@ -179,10 +182,10 @@ export default function Navbar() {
 
           <a
             href="/register"
-            className="btn-shimmer inline-flex items-center justify-center gap-2 rounded-2xl bg-linear-to-r from-emerald-600 to-teal-600 px-5 py-3.5 text-sm font-semibold text-white shadow-lg shadow-emerald-600/20 transition-all duration-200 hover:shadow-xl"
+            className="btn-shimmer inline-flex items-center justify-center gap-2 rounded-2xl  shadow-lg shadow-emerald-600/20 transition-all duration-200 hover:shadow-xl bg-yellow-500 px-6 py-3 text-sm font-semibold text-black hover:-translate-y-0.5 hover:shadow-yellow-600/30"
             onClick={() => setMobileMenuOpen(false)}
           >
-            Start Application
+            {t('navbar.startApplication')}
             <ChevronDown className="h-4 w-4 -rotate-90 opacity-80" />
           </a>
         </div>

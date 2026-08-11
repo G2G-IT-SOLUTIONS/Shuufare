@@ -45,7 +45,7 @@ export default function Testimonials() {
           {testimonials.map((item) => (
             <figure
               key={item.name}
-              className="hover-lift group relative overflow-hidden rounded-4xl border border-slate-200/80 bg-white p-7 shadow-sm"
+              className="hover-lift group relative overflow-hidden rounded-4xl border border-gray-950/80 bg-white p-7 shadow-sm"
             >
               {/* Quote icon */}
               <div className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-emerald-50 text-emerald-500">

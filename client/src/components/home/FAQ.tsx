@@ -48,7 +48,7 @@ export default function FAQ() {
                 Everything you need to know about joining Shuufare.
               </p>
 
-              <div className="mt-10 rounded-2xl border border-slate-200/80 bg-white p-6 shadow-sm">
+              <div className="mt-10 rounded-2xl border border-gray-950/80 bg-white p-6 shadow-sm">
                 <div className="flex items-start gap-4">
                   <div className="rounded-full bg-emerald-50 p-2.5 text-emerald-600">
                     <svg
@@ -93,7 +93,7 @@ export default function FAQ() {
             {faqs.map((faq, index) => (
               <details
                 key={faq.question}
-                className="group rounded-xl border border-slate-200/70 bg-white transition-all duration-200 hover:border-slate-300 hover:shadow-sm open:border-emerald-200 open:shadow-md"
+                className="group rounded-xl border border-gray-950/70 bg-white transition-all duration-200 hover:border-slate-300 hover:shadow-sm open:border-emerald-200 open:shadow-md"
               >
                 <summary className="flex cursor-pointer list-none items-center justify-between px-6 py-5">
                   <span className="flex items-center gap-4 pr-4">

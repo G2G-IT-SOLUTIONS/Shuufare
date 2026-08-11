@@ -184,7 +184,7 @@ export default function CompleteProfile() {
 
         <div className="grid gap-6 lg:grid-cols-[1fr_0.42fr]">
           {/* Form Card */}
-          <div className="overflow-hidden rounded-[2.5rem] border border-slate-200/80 bg-white p-1.5 shadow-2xl shadow-slate-950/6">
+          <div className="overflow-hidden rounded-[2.5rem] border border-gray-950/80 bg-white p-1.5 shadow-2xl shadow-slate-950/6">
             <div className="rounded-4xl bg-linear-to-b from-white to-slate-50/30 p-7 sm:p-9">
 
               {/* Step Progress */}
@@ -216,7 +216,7 @@ export default function CompleteProfile() {
                       {i < steps.length - 1 && (
                         <div
                           className={`h-0.5 w-6 rounded-full transition-colors duration-300 ${
-                            isComplete ? 'bg-emerald-300' : 'bg-slate-200'
+                            isComplete ? 'bg-emerald-300' : 'bg-gray-950'
                           }`}
                         />
                       )}
@@ -235,7 +235,7 @@ export default function CompleteProfile() {
                     <div className="relative">
                       <Phone className="absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400" />
                       <input
-                        className="w-full rounded-2xl border border-slate-200 bg-white py-3.5 pl-11 pr-4 text-sm outline-none transition-all duration-200 focus:border-emerald-400 focus:shadow-sm"
+                        className="w-full rounded-2xl border border-gray-950 bg-white py-3.5 pl-11 pr-4 text-sm outline-none transition-all duration-200 focus:border-emerald-400 focus:shadow-sm"
                         placeholder="Phone number *"
                         value={formData.phone}
                         onChange={(e) => updateField('phone', e.target.value)}
@@ -244,7 +244,7 @@ export default function CompleteProfile() {
                     <div className="relative">
                       <Phone className="absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400" />
                       <input
-                        className="w-full rounded-2xl border border-slate-200 bg-white py-3.5 pl-11 pr-4 text-sm outline-none transition-all duration-200 focus:border-emerald-400 focus:shadow-sm"
+                        className="w-full rounded-2xl border border-gray-950 bg-white py-3.5 pl-11 pr-4 text-sm outline-none transition-all duration-200 focus:border-emerald-400 focus:shadow-sm"
                         placeholder="Alternative phone (optional)"
                         value={formData.alternative_phone}
                         onChange={(e) =>
@@ -257,7 +257,7 @@ export default function CompleteProfile() {
                   <div className="grid gap-4 sm:grid-cols-2">
                     <input
                       type="number"
-                      className="w-full rounded-2xl border border-slate-200 bg-white py-3.5 px-4 text-sm outline-none transition-all duration-200 focus:border-emerald-400 focus:shadow-sm"
+                      className="w-full rounded-2xl border border-gray-950 bg-white py-3.5 px-4 text-sm outline-none transition-all duration-200 focus:border-emerald-400 focus:shadow-sm"
                       placeholder="Age"
                       value={formData.age}
                       onChange={(e) => updateField('age', e.target.value)}
@@ -271,7 +271,7 @@ export default function CompleteProfile() {
                           className={`flex-1 rounded-2xl border py-3.5 text-sm font-medium transition-all duration-200 ${
                             formData.gender === opt.value
                               ? 'border-emerald-400 bg-emerald-50 text-emerald-700 shadow-sm'
-                              : 'border-slate-200 bg-white text-slate-600 hover:border-slate-300'
+                              : 'border-gray-950 bg-white text-slate-600 hover:border-slate-300'
                           }`}
                         >
                           {opt.label}
@@ -283,7 +283,7 @@ export default function CompleteProfile() {
                   <div className="relative">
                     <MapPin className="absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400" />
                     <input
-                      className="w-full rounded-2xl border border-slate-200 bg-white py-3.5 pl-11 pr-4 text-sm outline-none transition-all duration-200 focus:border-emerald-400 focus:shadow-sm"
+                      className="w-full rounded-2xl border border-gray-950 bg-white py-3.5 pl-11 pr-4 text-sm outline-none transition-all duration-200 focus:border-emerald-400 focus:shadow-sm"
                       placeholder="Location (city / area)"
                       value={formData.location}
                       onChange={(e) => updateField('location', e.target.value)}
@@ -311,7 +311,7 @@ export default function CompleteProfile() {
                           className={`rounded-2xl border px-4 py-3.5 text-left text-sm font-medium transition-all duration-200 ${
                             formData.has_license === opt.value
                               ? 'border-emerald-400 bg-emerald-50 text-emerald-700 shadow-sm'
-                              : 'border-slate-200 bg-white text-slate-600 hover:border-slate-300'
+                              : 'border-gray-950 bg-white text-slate-600 hover:border-slate-300'
                           }`}
                         >
                           {opt.label}
@@ -323,7 +323,7 @@ export default function CompleteProfile() {
                   {formData.has_license === 'yes' && (
                     <div className="relative">
                       <input
-                        className="w-full rounded-2xl border border-slate-200 bg-white py-3.5 px-4 text-sm outline-none transition-all duration-200 focus:border-emerald-400 focus:shadow-sm"
+                        className="w-full rounded-2xl border border-gray-950 bg-white py-3.5 px-4 text-sm outline-none transition-all duration-200 focus:border-emerald-400 focus:shadow-sm"
                         placeholder="License photo URL (optional)"
                         value={formData.license_photo}
                         onChange={(e) =>
@@ -339,7 +339,7 @@ export default function CompleteProfile() {
                     </label>
                     <div className="grid gap-4 sm:grid-cols-3">
                       <input
-                        className="w-full rounded-2xl border border-slate-200 bg-white py-3.5 px-4 text-sm outline-none transition-all duration-200 focus:border-emerald-400 focus:shadow-sm"
+                        className="w-full rounded-2xl border border-gray-950 bg-white py-3.5 px-4 text-sm outline-none transition-all duration-200 focus:border-emerald-400 focus:shadow-sm"
                         placeholder="Till number"
                         value={formData.till_number}
                         onChange={(e) =>
@@ -347,7 +347,7 @@ export default function CompleteProfile() {
                         }
                       />
                       <input
-                        className="w-full rounded-2xl border border-slate-200 bg-white py-3.5 px-4 text-sm outline-none transition-all duration-200 focus:border-emerald-400 focus:shadow-sm"
+                        className="w-full rounded-2xl border border-gray-950 bg-white py-3.5 px-4 text-sm outline-none transition-all duration-200 focus:border-emerald-400 focus:shadow-sm"
                         placeholder="FCN number"
                         value={formData.fcn_number}
                         onChange={(e) =>
@@ -355,7 +355,7 @@ export default function CompleteProfile() {
                         }
                       />
                       <input
-                        className="w-full rounded-2xl border border-slate-200 bg-white py-3.5 px-4 text-sm outline-none transition-all duration-200 focus:border-emerald-400 focus:shadow-sm"
+                        className="w-full rounded-2xl border border-gray-950 bg-white py-3.5 px-4 text-sm outline-none transition-all duration-200 focus:border-emerald-400 focus:shadow-sm"
                         placeholder="Targa number"
                         value={formData.targa_number}
                         onChange={(e) =>
@@ -388,7 +388,7 @@ export default function CompleteProfile() {
                           className={`rounded-2xl border px-4 py-3.5 text-left text-sm font-medium transition-all duration-200 ${
                             formData.currently_employed === opt.value
                               ? 'border-emerald-400 bg-emerald-50 text-emerald-700 shadow-sm'
-                              : 'border-slate-200 bg-white text-slate-600 hover:border-slate-300'
+                              : 'border-gray-950 bg-white text-slate-600 hover:border-slate-300'
                           }`}
                         >
                           {opt.label}
@@ -412,7 +412,7 @@ export default function CompleteProfile() {
                           className={`rounded-2xl border px-4 py-3.5 text-left text-sm font-medium transition-all duration-200 ${
                             formData.previous_experience === opt.value
                               ? 'border-emerald-400 bg-emerald-50 text-emerald-700 shadow-sm'
-                              : 'border-slate-200 bg-white text-slate-600 hover:border-slate-300'
+                              : 'border-gray-950 bg-white text-slate-600 hover:border-slate-300'
                           }`}
                         >
                           {opt.label}
@@ -424,7 +424,7 @@ export default function CompleteProfile() {
                   {formData.previous_experience !== 'none' &&
                     formData.previous_experience !== '' && (
                       <input
-                        className="w-full rounded-2xl border border-slate-200 bg-white py-3.5 px-4 text-sm outline-none transition-all duration-200 focus:border-emerald-400 focus:shadow-sm"
+                        className="w-full rounded-2xl border border-gray-950 bg-white py-3.5 px-4 text-sm outline-none transition-all duration-200 focus:border-emerald-400 focus:shadow-sm"
                         placeholder="Which platform? (e.g. Ride, Feres, ZayRide)"
                         value={formData.previous_platform}
                         onChange={(e) =>
@@ -442,7 +442,7 @@ export default function CompleteProfile() {
                   <p className="text-sm text-slate-500">A few last questions and you're done!</p>
 
                   <textarea
-                    className="min-h-24 w-full rounded-2xl border border-slate-200 bg-white py-3.5 px-4 text-sm outline-none transition-all duration-200 focus:border-emerald-400 focus:shadow-sm"
+                    className="min-h-24 w-full rounded-2xl border border-gray-950 bg-white py-3.5 px-4 text-sm outline-none transition-all duration-200 focus:border-emerald-400 focus:shadow-sm"
                     placeholder="Any accessibility considerations we should know about?"
                     value={formData.accessibility_considerations}
                     onChange={(e) =>
@@ -451,14 +451,14 @@ export default function CompleteProfile() {
                   />
 
                   <textarea
-                    className="min-h-24 w-full rounded-2xl border border-slate-200 bg-white py-3.5 px-4 text-sm outline-none transition-all duration-200 focus:border-emerald-400 focus:shadow-sm"
+                    className="min-h-24 w-full rounded-2xl border border-gray-950 bg-white py-3.5 px-4 text-sm outline-none transition-all duration-200 focus:border-emerald-400 focus:shadow-sm"
                     placeholder="What are your goals in joining Shuufare?"
                     value={formData.goals}
                     onChange={(e) => updateField('goals', e.target.value)}
                   />
 
                   <textarea
-                    className="min-h-24 w-full rounded-2xl border border-slate-200 bg-white py-3.5 px-4 text-sm outline-none transition-all duration-200 focus:border-emerald-400 focus:shadow-sm"
+                    className="min-h-24 w-full rounded-2xl border border-gray-950 bg-white py-3.5 px-4 text-sm outline-none transition-all duration-200 focus:border-emerald-400 focus:shadow-sm"
                     placeholder="What future opportunities interest you?"
                     value={formData.future_opportunities}
                     onChange={(e) =>
@@ -479,7 +479,7 @@ export default function CompleteProfile() {
                           className={`rounded-2xl border px-4 py-3 text-left text-sm font-medium transition-all duration-200 ${
                             formData.heard_from === opt.value
                               ? 'border-emerald-400 bg-emerald-50 text-emerald-700 shadow-sm'
-                              : 'border-slate-200 bg-white text-slate-600 hover:border-slate-300'
+                              : 'border-gray-950 bg-white text-slate-600 hover:border-slate-300'
                           }`}
                         >
                           {opt.label}
@@ -504,7 +504,7 @@ export default function CompleteProfile() {
                   <button
                     type="button"
                     onClick={prevStep}
-                    className="group inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-6 py-3 text-sm font-semibold text-slate-700 shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md"
+                    className="group inline-flex items-center gap-2 rounded-full border border-gray-950 bg-white px-6 py-3 text-sm font-semibold text-slate-700 shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md"
                   >
                     <ArrowLeft className="h-4 w-4 transition-transform duration-200 group-hover:-translate-x-1" />
                     Back
@@ -581,7 +581,7 @@ export default function CompleteProfile() {
             </div>
 
             {/* Steps Overview */}
-            <div className="rounded-4xl border border-slate-200/80 bg-white p-6 shadow-sm">
+            <div className="rounded-4xl border border-gray-950/80 bg-white p-6 shadow-sm">
               <h3 className="text-sm font-bold text-slate-900">Your Progress</h3>
               <div className="mt-5 space-y-0">
                 {steps.map((step, i) => {
@@ -609,7 +609,7 @@ export default function CompleteProfile() {
                         {!isLast && (
                           <div
                             className={`my-1 h-6 w-0.5 rounded-full ${
-                              isComplete ? 'bg-emerald-300' : 'bg-slate-200'
+                              isComplete ? 'bg-emerald-300' : 'bg-gray-950'
                             }`}
                           />
                         )}

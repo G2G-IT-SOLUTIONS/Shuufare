@@ -1,0 +1,68 @@
+{
+  "navbar": {
+    "services": "Services",
+    "contact": "Contact us",
+    "startApplication": "Start Application",
+    "language": "Language"
+  },
+  "hero": {
+    "title": "Your Partner Beyond Your Trip",
+    "description": "Vehicle Ownership, financing and Fleet management solutions designed to help Drivers build a better future",
+    "registerWithNationalId": "Register with National ID",
+    "learnMore": "Learn More"
+  },
+  "benefits": {
+    "title": "Why Shuufare?",
+    "subtitle": "We provide the tools you need to",
+    "highlight": "succeed",
+    "vehicleOwnership": "Vehicle Ownership",
+    "vehicleInsurance": "Vehicle Insurance",
+    "fleetManagement": "Fleet and Operation management",
+    "companyEV": "Company Owned Electric Vehicle",
+    "microFinance": "Driver Micro-finance for operational and personal Needs",
+    "salaryEmployment": "Salary Based Employment"
+  },
+  "home": {
+    "whoCanApply": "Who Can Apply?",
+    "whoCanApplyDescription": "We believe in creating opportunities for everyone. Check if you qualify to join our community of drivers.",
+    "women": "Women looking for stable income",
+    "womenDescription": "Flexible opportunities designed for women",
+    "disabilities": "People with disabilities able to operate a vehicle",
+    "disabilitiesDescription": "Inclusive roles with necessary accommodations",
+    "youth": "Young people seeking employment",
+    "youthDescription": "Great starting point for your career journey",
+    "older": "Older individuals with driving experience",
+    "olderDescription": "Leverage your years of driving expertise",
+    "license": "Anyone with a valid driving license",
+    "licenseDescription": "All license holders are welcome to apply",
+    "residents": "Residents of Ethiopia",
+    "residentsDescription": "Open to all Ethiopian residents"
+  },
+  "cta": {
+    "title": "Drive With Yango, Grow with Shuufare",
+    "subtitle": "Start Your Journey Today!",
+    "startApplication": "Start Application",
+    "contact": "Contact",
+    "empoweringDrivers": "Empowering Drivers",
+    "empoweringDriversDescription": "Stable income, dedicated support, and the foundation to build a better future.",
+    "address": "Address",
+    "addressText": "Addis Ababa, Ethiopia",
+    "phone": "+251 911 123 456",
+    "email": "info@shuufare.com",
+    "telegram": "@shuufare_eth",
+    "copyright": "All rights reserved"
+  },
+  "qrRegistration": {
+    "title": "Scan to Register",
+    "description": "Use your phone to start the registration process instantly.",
+    "scanWithCamera": "Scan with Camera",
+    "scanToRegister": "Scan to Register",
+    "scanCodeAndContinue": "Scan the code and continue on your phone.",
+    "qrCodeDescription": "The QR code opens the registration flow instantly, keeping the process simple and mobile-friendly."
+  },
+  "partners": {
+    "partners": "Partners",
+    "title": "Our Trusted Partners",
+    "description": "We work with leading organizations to deliver the best experience."
+  }
+}
