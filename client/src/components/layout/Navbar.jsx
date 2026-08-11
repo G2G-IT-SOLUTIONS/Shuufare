@@ -10,7 +10,7 @@ export default function Navbar() {
 
   const navigationLinks = [
     { label: t('navbar.services'), href: '#benefits' },
-    { label: t('navbar.contact'), href: '#contact' },
+    { label: t('navbar.contact'), href: '#cta' },
   ]
 
   const handleLanguageChange = (lang) => {

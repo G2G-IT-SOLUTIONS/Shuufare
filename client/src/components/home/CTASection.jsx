@@ -12,8 +12,9 @@ export default function CTASection() {
   const { t } = useTranslation();
 
   return (
-    <section className="relative overflow-hidden bg-slate-950 text-white">
-      {/* Subtle background accents */}
+    <section 
+    id="cta"
+    className="relative overflow-hidden bg-slate-950 text-white">
       <div
         className="pointer-events-none absolute -left-40 top-1/4 h-80 w-80 rounded-full bg-emerald-500/10 blur-3xl"
         aria-hidden="true"
