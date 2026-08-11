@@ -59,6 +59,8 @@ model User {
   photo_url                   String?
   age                         Int?
   gender                      String?
+  nationality                 String?
+  birthdate                   String?
   has_license                 String?
   license_photo               String?
   currently_employed          String?

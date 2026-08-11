@@ -31,11 +31,11 @@ export default function Partners() {
       <div className="mx-auto max-w-7xl px-6 sm:px-8 lg:px-12">
         {/* Header */}
         <div className="mx-auto max-w-2xl text-center">
-          <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-2xl bg-emerald-50 text-emerald-600">
+          <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-2xl bg-amber-50 text-amber-600">
             <Handshake className="h-6 w-6" strokeWidth={2} />
           </div>
 
-          <p className="mt-5 text-xs font-semibold uppercase tracking-[0.2em] text-emerald-600">
+          <p className="mt-5 text-xs font-semibold uppercase tracking-[0.2em] text-amber-600">
             {t("partners.partners")}
           </p>
 

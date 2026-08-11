@@ -82,6 +82,8 @@ console.log("=======================================");
     null,
 
   gender: payload.gender || null,
+  nationality: payload.nationality || null,
+  birthdate: payload.birthdate || payload.date_of_birth || null,
 
   location:
     payload.address ||

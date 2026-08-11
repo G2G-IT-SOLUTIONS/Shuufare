@@ -51,6 +51,14 @@ export async function findOrCreateUser(faydaId, additionalData = {}) {
       createData.gender = additionalData.gender;
     }
 
+    if (additionalData.nationality !== undefined) {
+      createData.nationality = additionalData.nationality;
+    }
+
+    if (additionalData.birthdate !== undefined) {
+      createData.birthdate = additionalData.birthdate;
+    }
+
     if (additionalData.location !== undefined) {
       createData.location =
         typeof additionalData.location === 'object'

@@ -12,8 +12,8 @@ export default function QRRegistration() {
       <div className="mx-auto max-w-7xl px-6 sm:px-8 lg:px-12">
         {/* Header */}
         <div className="max-w-2xl">
-          <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-emerald-50 text-emerald-600">
-            <QrCode className="h-6 w-6" strokeWidth={2} />
+          <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-amber-50 text-amber-600">
+            <QrCode className="h-8 w-8 font-extrabold" strokeWidth={2} />
           </div>
 
           <h2 className="mt-5 text-3xl font-bold tracking-tight text-slate-950 sm:text-4xl">
@@ -32,7 +32,7 @@ export default function QRRegistration() {
             <div className="flex items-center justify-center bg-slate-950 p-8 sm:p-12">
               <div className="w-full max-w-sm">
                 <div className="mb-5 flex items-center justify-center gap-2 text-sm font-medium text-white">
-                  <Smartphone className="h-4 w-4 text-emerald-400" />
+                  <Smartphone className="h-4 w-4 text-amber-400" />
                   <span>
                     {t("qrRegistration.scanWithCamera")}
                   </span>
@@ -51,7 +51,7 @@ export default function QRRegistration() {
             {/* Text */}
             <div className="flex items-center p-8 sm:p-12 lg:p-14">
               <div className="max-w-lg">
-                <p className="text-sm font-semibold uppercase tracking-[0.2em] text-emerald-600">
+                <p className="text-sm font-semibold uppercase tracking-[0.2em] text-amber-500">
                   {t("qrRegistration.scanToRegister")}
                 </p>
 

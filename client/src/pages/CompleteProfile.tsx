@@ -10,7 +10,6 @@ import {
   Briefcase,
   Target,
   Megaphone,
-  CreditCard,
   ArrowRight,
   ArrowLeft,
   Send,

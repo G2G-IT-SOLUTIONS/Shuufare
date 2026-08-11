@@ -90,6 +90,8 @@ export const getUserProfile = async (req, res, next) => {
         targa_number: true,
         created_at: true,
         updated_at: true,
+        nationality: true,
+        birthdate: true,
       },
     });
 
