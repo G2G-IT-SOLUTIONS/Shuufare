@@ -42,8 +42,8 @@ export default function AdminDashboard() {
     try {
       setLoading(true)
       const [usersRes, statsRes] = await Promise.all([
-        axios.get(`${API_URL}/api/admin/users`, { withCredentials: true }),
-        axios.get(`${API_URL}/api/admin/stats`, { withCredentials: true })
+        axios.get(`${API_URL}/admin/users`, { withCredentials: true }),
+        axios.get(`${API_URL}/admin/stats`, { withCredentials: true })
       ])
       setUsers(usersRes.data)
       setStats(statsRes.data)
@@ -59,7 +59,7 @@ export default function AdminDashboard() {
 
   const handleLogout = async () => {
     try {
-      await axios.post(`${API_URL}/api/admin/logout`, {}, { withCredentials: true })
+      await axios.post(`${API_URL}/admin/logout`, {}, { withCredentials: true })
       navigate('/admin/login')
     } catch (err) {
       navigate('/admin/login')
