@@ -1,10 +1,9 @@
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom'
 import Navbar from './components/layout/Navbar'
 import Home from './pages/Home'
-import ApplicationStatus from './pages/ApplicationStatus'
 import AuthCallback from './pages/AuthCallback'
-import CompleteProfile from './pages/CompleteProfile'
-import AdminLogin from './admin/login'
+import AdminLogin from './pages/AdminLogin'
+import AdminDashboard from './pages/AdminDashboard'
 
 const AppContent = () => {
   const location = useLocation()
@@ -18,9 +17,8 @@ const AppContent = () => {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/auth/callback" element={<AuthCallback />} />
-        <Route path="/complete-profile" element={<CompleteProfile />} />
-        <Route path="/application-status" element={<ApplicationStatus />} />
         <Route path="/admin/login" element={<AdminLogin />} />
+        <Route path="/admin/dashboard" element={<AdminDashboard />} />
       </Routes>
     </div>
   )
@@ -34,4 +32,4 @@ const App = () => {
   )
 }
 
-export default App
+export default App;

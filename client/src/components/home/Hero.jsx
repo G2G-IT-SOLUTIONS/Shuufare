@@ -41,15 +41,15 @@ export default function Hero() {
         aria-hidden="true"
       />
 
-      {/* Dark gradient overlay */}
+      {/* Dark linear overlay */}
       <div
-        className="absolute inset-0 bg-gradient-to-r from-slate-950/98 via-slate-950/90 to-slate-950/85"
+        className="absolute inset-0 bg-linear-to-r from-slate-950/98 via-slate-950/90 to-slate-950/85"
         aria-hidden="true"
       />
 
       {/* Bottom fade */}
       <div
-        className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-slate-950 to-transparent"
+        className="absolute inset-x-0 bottom-0 h-40 bg-linear-to-t from-slate-950 to-transparent"
         aria-hidden="true"
       />
 

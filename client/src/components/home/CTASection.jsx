@@ -3,9 +3,10 @@ import {
   Phone,
   Mail,
   MapPin,
-  MessageCircle,
+  Send,
 } from "lucide-react";
 import { useTranslation } from "react-i18next";
+import logo from '../../assets/logo.png'
 
 export default function CTASection() {
   const { t } = useTranslation();
@@ -79,10 +80,15 @@ export default function CTASection() {
                 <span>{t("cta.email")}</span>
               </div>
 
-              <div className="flex items-center gap-3 text-slate-300">
-                <MessageCircle className="h-4 w-4 shrink-0 text-slate-500" />
+              <a
+                href="https://t.me/shuufare_eth"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 rounded-lg bg-[#0088cc] px-4 py-2 text-sm font-semibold text-white transition-all duration-300 hover:bg-[#0077b5] hover:shadow-lg hover:shadow-[#0088cc]/20"
+              >
+                <Send className="h-4 w-4" />
                 <span>{t("cta.telegram")}</span>
-              </div>
+              </a>
             </div>
           </div>
 
@@ -113,15 +119,15 @@ export default function CTASection() {
           </div>
 
           {/* Brand */}
-          <div className="flex flex-col items-center justify-center rounded-2xl border border-white/10 bg-white/[0.03] p-6 text-center transition-colors duration-300  ">
+          <div className="flex flex-col items-center justify-center rounded-2xl border border-white/10 bg-white/3 p-6 text-center transition-colors duration-300  ">
             <div className="text-xs font-semibold uppercase tracking-[0.18em] text-amber-500">
               Shuufare
             </div>
 
             <img
-              src="https://reg.g2gitsolutions.com/assets/shuufare%20logo.png"
+              src={logo}
               alt="Shuufare Logo"
-              className="mt-4 h-14 w-auto object-contain"
+              className="mt-4 h-24 w-40 object-contain transition-transform duration-300 hover:scale-105"
             />
 
             <p className="mt-4 text-xs text-slate-500">

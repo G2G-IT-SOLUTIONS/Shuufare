@@ -110,6 +110,8 @@
     "submitApplication": "Submit Application",
     "continueApplication": "Continue Application",
     "continueDescription": "You'll need to provide a few more details to complete your application.",
+    "iHaveJoinedTelegram": "I have joined the Telegram group",
+    "joinTelegramGroup": "Join Telegram Group →",
     "verificationFailed": "Verification Failed",
     "whatToDo": "What you can do:",
     "checkCredentials": "• Make sure your Fayda credentials are correct",
@@ -119,6 +121,29 @@
     "backToHome": "← Back to Home",
     "faydaVerifiedData": "Fayda Verified Data",
     "email": "Email",
-    "faydaId": "Fayda ID"
+    "faydaId": "Fayda ID",
+    "applicationSubmitted": "Application Submitted Successfully!",
+    "applicationSubmittedDescription": "Your information has been submitted. We will review your application and get back to you soon.",
+    "close": "Close"
+  },
+  "admin": {
+    "login": "Admin Login",
+    "loginDescription": "Enter your credentials to access the dashboard",
+    "email": "Email",
+    "password": "Password",
+    "signIn": "Sign In",
+    "signingIn": "Signing in...",
+    "backToHome": "← Back to Home",
+    "dashboard": "Admin Dashboard",
+    "logout": "Logout",
+    "totalUsers": "Total Users",
+    "newThisMonth": "New This Month",
+    "users": "Users",
+    "searchPlaceholder": "Search by name, email, or phone...",
+    "noUsersFound": "No users found",
+    "userDetails": "User Details",
+    "close": "Close",
+    "registered": "Registered",
+    "lastUpdated": "Last Updated"
   }
 }

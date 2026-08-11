@@ -33,6 +33,7 @@ interface FormData {
   accessibilityConsiderations: string
   goals: string
   howDidYouHear: string
+  joinedTelegram: boolean
 }
 
 export default function AuthCallback() {
@@ -42,6 +43,7 @@ export default function AuthCallback() {
   const [status, setStatus] = useState<Status>('loading')
   const [error, setError] = useState('')
   const [userData, setUserData] = useState<UserData | null>(null)
+  const [showSuccessPopup, setShowSuccessPopup] = useState(false)
   const [formData, setFormData] = useState<FormData>({
     phoneNumber: '',
     alternativePhone: '',
@@ -52,7 +54,8 @@ export default function AuthCallback() {
     previousExperience: '',
     accessibilityConsiderations: '',
     goals: 'stable_income',
-    howDidYouHear: 'telegram'
+    howDidYouHear: 'telegram',
+    joinedTelegram: false
   })
 
   const success = searchParams.get('success')
@@ -97,7 +100,7 @@ export default function AuthCallback() {
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.type === 'checkbox' ? e.target.checked : e.target.value
     })
   }
 
@@ -107,27 +110,32 @@ export default function AuthCallback() {
       setError(t('authCallback.userDataNotAvailable'))
       return
     }
-    
+
     try {
       await axios.post(`${API_URL}/driver/application`, {
         ...formData,
         userId: userData.id
       }, { withCredentials: true })
-      navigate('/success')
+      setShowSuccessPopup(true)
     } catch (err: any) {
       console.error('Failed to submit application:', err)
       setError(err.response?.data?.error || t('authCallback.submissionFailed'))
     }
   }
 
+  const handleClosePopup = () => {
+    setShowSuccessPopup(false)
+    navigate('/')
+  }
+
   // Loading State
   if (status === 'loading') {
     return (
-      <div className="min-h-screen w-full bg-gradient-to-br from-slate-50 via-white to-slate-50 flex items-center justify-center px-4">
+      <div className="min-h-screen w-full bg-linear-to-br from-slate-50 via-white to-slate-50 flex items-center justify-center px-4">
         <div className="max-w-md w-full text-center">
           <div className="relative inline-block">
             <div className="absolute inset-0 animate-ping rounded-full bg-emerald-100/60" />
-            <div className="relative flex h-24 w-24 items-center justify-center rounded-full bg-gradient-to-br from-emerald-50 to-emerald-100 shadow-xl">
+            <div className="relative flex h-24 w-24 items-center justify-center rounded-full bg-linear-to-br from-emerald-50 to-emerald-100 shadow-xl">
               <Loader2 className="h-10 w-10 animate-spin text-emerald-600" />
             </div>
           </div>
@@ -138,7 +146,7 @@ export default function AuthCallback() {
             {t('authCallback.verifyingDescription')}
           </p>
           <div className="mt-8 h-1.5 w-full max-w-xs mx-auto overflow-hidden rounded-full bg-slate-100">
-            <div className="h-full w-1/3 animate-[shimmer_1.5s_ease-in-out_infinite] rounded-full bg-gradient-to-r from-emerald-400 via-teal-400 to-emerald-400" />
+            <div className="h-full w-1/3 animate-[shimmer_1.5s_ease-in-out_infinite] rounded-full bg-linear-to-r from-emerald-400 via-teal-400 to-emerald-400" />
           </div>
         </div>
       </div>
@@ -148,7 +156,7 @@ export default function AuthCallback() {
   // Error State
   if (status === 'error') {
     return (
-      <div className="min-h-screen w-full bg-gradient-to-br from-slate-50 via-white to-slate-50 flex items-center justify-center px-4">
+      <div className="min-h-screen w-full bg-linear-to-br from-slate-50 via-white to-slate-50 flex items-center justify-center px-4">
         <div className="max-w-md w-full text-center">
           <div className="flex h-24 w-24 mx-auto items-center justify-center rounded-full bg-red-50 shadow-lg shadow-red-50/50">
             <AlertTriangle className="h-12 w-12 text-red-500" />
@@ -198,7 +206,7 @@ export default function AuthCallback() {
   // Success State - Guard against null userData
   if (!userData) {
     return (
-      <div className="min-h-screen w-full bg-gradient-to-br from-slate-50 via-white to-slate-50 flex items-center justify-center px-4">
+      <div className="min-h-screen w-full bg-linear-to-br from-slate-50 via-white to-slate-50 flex items-center justify-center px-4">
         <div className="max-w-md w-full text-center">
           <div className="flex h-24 w-24 mx-auto items-center justify-center rounded-full bg-amber-50 shadow-lg shadow-amber-50/50">
             <AlertTriangle className="h-12 w-12 text-amber-500" />
@@ -220,20 +228,19 @@ export default function AuthCallback() {
 
   // Success State with userData
   return (
-    <div className="min-h-screen w-full bg-gradient-to-br from-slate-50 via-white to-slate-50 py-8 px-4">
+    <div className="min-h-screen w-full bg-linear-to-br from-slate-50 via-white to-slate-50 py-8 px-4">
       <div className="max-w-6xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {/* Left Column - Verified Identity */}
           <div className="space-y-6">
             <div className="bg-white rounded-2xl shadow-lg shadow-slate-200/50 border border-slate-100 overflow-hidden">
-              <div className="p-6 border-b border-slate-100 bg-gradient-to-r from-emerald-50 to-teal-50">
+              <div className="p-6 border-b border-slate-100 bg-linear-to-r from-emerald-50 to-teal-50">
                 <div className="flex items-center gap-3">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-br from-emerald-500 to-teal-500 shadow-lg shadow-emerald-500/25">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-full bg-linear-to-br from-emerald-500 to-teal-500 shadow-lg shadow-emerald-500/25">
                     <ShieldCheck className="h-6 w-6 text-white" />
                   </div>
                   <div>
                     <h2 className="text-lg font-bold text-slate-900">{t('authCallback.identityVerified')}</h2>
-                    <p className="text-sm text-slate-600">{t('authCallback.nationalIdVerified')}</p>
                   </div>
                   <div className="ml-auto">
                     <span className="inline-flex items-center gap-1.5 rounded-full bg-emerald-100 px-3 py-1 text-xs font-medium text-emerald-700">
@@ -253,13 +260,12 @@ export default function AuthCallback() {
                       className="h-20 w-20 rounded-2xl border-2 border-emerald-100 object-cover shadow-md"
                     />
                   ) : (
-                    <div className="h-20 w-20 rounded-2xl bg-gradient-to-br from-slate-100 to-slate-200 flex items-center justify-center">
+                    <div className="h-20 w-20 rounded-2xl bg-linear-to-br from-slate-100 to-slate-200 flex items-center justify-center">
                       <User className="h-10 w-10 text-slate-400" />
                     </div>
                   )}
                   <div>
                     <h3 className="text-lg font-semibold text-slate-900">{userData.name || t('authCallback.na')}</h3>
-                    <p className="text-sm text-slate-500">{t('authCallback.id')}: {userData.fayda_id}</p>
                   </div>
                 </div>
 
@@ -275,7 +281,7 @@ export default function AuthCallback() {
 
             <div className="bg-emerald-50 border border-emerald-200 rounded-2xl p-4">
               <p className="text-sm text-emerald-800 flex items-center gap-2">
-                <CheckCircle2 className="h-4 w-4 text-emerald-600 flex-shrink-0" />
+                <CheckCircle2 className="h-4 w-4 text-emerald-600 shrink-0" />
                 {t('authCallback.verificationSuccessMessage')}
               </p>
             </div>
@@ -330,7 +336,7 @@ export default function AuthCallback() {
                     type="number"
                     value={formData.age}
                     onChange={handleInputChange}
-                    placeholder={t('authCallback.agePlaceholder')}
+                    placeholder={t('25')}
                     required
                   />
                   <SelectField
@@ -409,9 +415,32 @@ export default function AuthCallback() {
                 </div>
               </Section>
 
+              <div className="flex items-start gap-3 mb-6">
+                <input
+                  type="checkbox"
+                  name="joinedTelegram"
+                  id="joinedTelegram"
+                  checked={formData.joinedTelegram}
+                  onChange={handleInputChange}
+                  required
+                  className="mt-0.5 h-4 w-4 rounded border-slate-300 text-emerald-600 focus:ring-emerald-500"
+                />
+                <label htmlFor="joinedTelegram" className="text-sm text-slate-600">
+                  {t('authCallback.iHaveJoinedTelegram')}{' '}
+                  <a
+                    href="https://t.me/shuufare_eth"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="font-semibold text-emerald-600 hover:text-emerald-700 underline"
+                  >
+                    {t('authCallback.joinTelegramGroup')}
+                  </a>
+                </label>
+              </div>
+
               <button
                 type="submit"
-                className="w-full mt-6 inline-flex items-center justify-center gap-2.5 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 px-7 py-4 text-sm font-semibold text-white shadow-lg shadow-emerald-600/20 transition-all duration-300 hover:shadow-xl hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98]"
+                className="w-full mt-6 inline-flex items-center justify-center gap-2.5 rounded-xl bg-linear-to-r from-emerald-600 to-teal-600 px-7 py-4 text-sm font-semibold text-white shadow-lg shadow-emerald-600/20 transition-all duration-300 hover:shadow-xl hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98]"
               >
                 {t('authCallback.submitApplication')}
                 <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-1" />
@@ -420,6 +449,8 @@ export default function AuthCallback() {
           </div>
         </div>
       </div>
+
+      <SuccessPopup show={showSuccessPopup} onClose={handleClosePopup} t={t} />
     </div>
   )
 }
@@ -428,7 +459,7 @@ export default function AuthCallback() {
 const InfoCard = ({ icon: Icon, label, value }: { icon: any, label: string, value: string }) => (
   <div className="bg-slate-50 rounded-xl p-3 hover:bg-slate-100 transition-colors">
     <div className="flex items-start gap-2">
-      <Icon className="h-4 w-4 text-slate-400 mt-0.5 flex-shrink-0" />
+      <Icon className="h-4 w-4 text-slate-400 mt-0.5 shrink-0" />
       <div className="min-w-0">
         <p className="text-xs text-slate-500">{label}</p>
         <p className="text-sm font-medium text-slate-900 truncate">{value}</p>
@@ -518,3 +549,28 @@ const Info = ({ className }: { className?: string }) => (
     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
   </svg>
 )
+
+// Success Popup
+const SuccessPopup = ({ show, onClose, t }: { show: boolean, onClose: () => void, t: any }) => {
+  if (!show) return null
+
+  return (
+    <div className="fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-50">
+      <div className="bg-white rounded-2xl max-w-md w-full p-8 text-center">
+        <div className="mx-auto h-16 w-16 flex items-center justify-center rounded-full bg-emerald-100 mb-4">
+          <svg className="h-8 w-8 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+          </svg>
+        </div>
+        <h2 className="text-2xl font-bold text-slate-900 mb-2">{t('authCallback.applicationSubmitted')}</h2>
+        <p className="text-slate-600 mb-6">{t('authCallback.applicationSubmittedDescription')}</p>
+        <button
+          onClick={onClose}
+          className="w-full py-3 rounded-xl bg-emerald-600 text-white font-semibold hover:bg-emerald-700 transition-colors"
+        >
+          {t('authCallback.close')}
+        </button>
+      </div>
+    </div>
+  )
+}
