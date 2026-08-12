@@ -18,6 +18,17 @@ export default function Navbar() {
     localStorage.setItem('language', lang)
   }
 
+  const handleNationalIdRegistration = () => {
+    const apiUrl = import.meta.env.VITE_API_URL;
+    
+    if (!apiUrl) {
+      console.error("VITE_API_URL is not configured");
+      return;
+    }
+
+    window.location.href = `${apiUrl}/auth/fayda`;
+  };
+
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20)
     window.addEventListener('scroll', onScroll, { passive: true })
@@ -94,13 +105,14 @@ export default function Navbar() {
           </div>
 
           {/* CTA Button */}
-          <a
-            href="/rrrr"
+          <button 
+          type="button"
+          onClick={handleNationalIdRegistration}
             className="btn-shimmer inline-flex items-center gap-2 rounded-full bg-amber-500 px-6 py-2.5 text-sm font-semibold text-black shadow-lg shadow-emerald-600/25 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-xl hover:shadow-emerald-600/30 border border-amber-500"
           >
             {t('navbar.startApplication')}
             <ChevronDown className="h-4 w-4 -rotate-90 opacity-80" />
-          </a>
+          </button>
         </div>
 
         {/* Mobile Menu Button */}

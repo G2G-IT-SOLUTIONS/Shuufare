@@ -64,7 +64,6 @@ export default function AuthCallback() {
   useEffect(() => {
     if (success !== 'true') {
       setStatus('error')
-      setError(errorMsg || t('authCallback.authFailed'))
       return
     }
 

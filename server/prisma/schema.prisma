@@ -60,6 +60,7 @@ model User {
   age                         Int?
   gender                      String?
   nationality                 String?
+  current_address             String?
   birthdate                   String?
   has_license                 String?
   license_photo               String?

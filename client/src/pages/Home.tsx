@@ -1,11 +1,10 @@
 import {
   Users,
-  Flower2,
-  Accessibility,
-  GraduationCap,
-  Clock,
   Car,
-  Flag,
+  ShieldCheck,
+  DollarSign,
+  Truck,
+  Briefcase,
 } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import Hero from "../components/home/Hero";
@@ -19,33 +18,33 @@ export default function Home() {
 
   const eligibleGroups = [
     {
-      text: t("home.women"),
-      icon: Flower2,
-      color: "rose",
-    },
-    {
-      text: t("home.disabilities"),
-      icon: Accessibility,
-      color: "blue",
-    },
-    {
-      text: t("home.youth"),
-      icon: GraduationCap,
-      color: "amber",
-    },
-    {
-      text: t("home.older"),
-      icon: Clock,
-      color: "indigo",
-    },
-    {
-      text: t("home.license"),
+      text: t("home.yangoDriver"),
       icon: Car,
       color: "emerald",
     },
     {
-      text: t("home.residents"),
-      icon: Flag,
+      text: t("home.vehicleFinancing"),
+      icon: DollarSign,
+      color: "amber",
+    },
+    {
+      text: t("home.insuranceCoverage"),
+      icon: ShieldCheck,
+      color: "blue",
+    },
+    {
+      text: t("home.microFinance"),
+      icon: DollarSign,
+      color: "rose",
+    },
+    {
+      text: t("home.fleetManagement"),
+      icon: Truck,
+      color: "indigo",
+    },
+    {
+      text: t("home.salaryEmployment"),
+      icon: Briefcase,
       color: "purple",
     },
   ];

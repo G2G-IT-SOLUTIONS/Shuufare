@@ -20,23 +20,20 @@
     "fleetManagement": "Fleet and Operation management",
     "companyEV": "Company Owned Electric Vehicle",
     "microFinance": "Driver Micro-finance for operational and personal Needs",
-    "salaryEmployment": "Salary Based Employment"
+    "salaryEmployment": "Salary Based Employment",
+    "transparentStructure": "Transparent Financing and Re-payment structure",
+    "fastApproval": "Fast application and Approval Process"
   },
   "home": {
-    "whoCanApply": "Who Can Apply?",
-    "whoCanApplyDescription": "We believe in creating opportunities for everyone. Check if you qualify to join our community of drivers.",
-    "women": "Women looking for stable income",
-    "womenDescription": "Flexible opportunities designed for women",
-    "disabilities": "People with disabilities able to operate a vehicle",
-    "disabilitiesDescription": "Inclusive roles with necessary accommodations",
-    "youth": "Young people seeking employment",
-    "youthDescription": "Great starting point for your career journey",
-    "older": "Older individuals with driving experience",
-    "olderDescription": "Leverage your years of driving expertise",
-    "license": "Anyone with a valid driving license",
-    "licenseDescription": "All license holders are welcome to apply",
-    "residents": "Residents of Ethiopia",
-    "residentsDescription": "Open to all Ethiopian residents"
+  "whoCanApply": "Who Can Apply?",
+  "whoCanApplyDescription": "We believe in creating opportunities for everyone. Check if you qualify to join our community of drivers.",
+  "yangoDriver": "Yango Driver",
+  "vehicleFinancing": "Drivers looking for vehicle financing",
+  "insuranceCoverage": "Drivers looking for vehicle insurance coverage",
+  "microFinance": "Drivers looking for micro finance",
+  "fleetManagement": "Fleet operators to handover vehicle and fleet management",
+  "salaryEmployment": "Young drivers seeking salary based driving employment"
+
   },
   "cta": {
     "title": "Drive With Yango, Grow with Shuufare",

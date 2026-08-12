@@ -10,6 +10,16 @@ import logo from '../../assets/logo.png'
 
 export default function CTASection() {
   const { t } = useTranslation();
+  const handleNationalIdRegistration = () => {
+    const apiUrl = import.meta.env.VITE_API_URL;
+
+    if (!apiUrl) {
+      console.error("VITE_API_URL is not configured");
+      return;
+    }
+
+    window.location.href = `${apiUrl}/auth/fayda`;  
+  }
 
   return (
     <section 
@@ -47,14 +57,15 @@ export default function CTASection() {
           </div>
 
           <div className="mt-8 lg:mt-0 lg:shrink-0">
-            <a
-              href="#register"
+            <button
+              onClick= {handleNationalIdRegistration}
               className="group inline-flex w-full items-center justify-center gap-2 rounded-full bg-amber-500 px-7 py-4 text-sm font-semibold text-white shadow-lg shadow-amber-500/20 transition-all duration-300 hover:-translate-y-0.5 hover:bg-amber-400 hover:shadow-xl hover:shadow-amber-500/20 focus:outline-none focus:ring-2 focus:ring-amber-400 focus:ring-offset-2 focus:ring-offset-slate-950 sm:w-auto"
             >
+          
               {t("cta.startApplication")}
 
               <Rocket className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5" />
-            </a>
+            </button>
           </div>
         </div>
 

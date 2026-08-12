@@ -3,19 +3,34 @@ import { useNavigate } from 'react-router-dom'
 import { Users, LogOut, Loader2, AlertCircle, Search, User as UserIcon } from 'lucide-react'
 import axios from 'axios'
 
-const API_URL = import.meta.env.VITE_API_URL
+const API_URL = import.meta.env.VITE_API_URL;
 
 interface User {
   id: number
   fayda_id: string
   name: string | null
-  email: string | null
   phone: string | null
+  alternative_phone: string | null
+  email: string | null
+  photo_url: string | null
+  age: number | null
   gender: string | null
   nationality: string | null
+  current_address: string | null
   birthdate: string | null
+  has_license: string | null
+  license_photo: string | null
+  currently_employed: string | null
+  previous_experience: string | null
+  previous_platform: string | null
   location: string | null
-  photo_url: string | null
+  accessibility_considerations: string | null
+  goals: string | null
+  future_opportunities: string | null
+  heard_from: string | null
+  till_number: string | null
+  fcn_number: string | null
+  targa_number: string | null
   created_at: string
   updated_at: string
 }
@@ -239,46 +254,155 @@ export default function AdminDashboard() {
                 )}
                 <div>
                   <h3 className="text-lg font-semibold text-slate-900">{selectedUser.name || 'N/A'}</h3>
-                  <p className="text-sm text-slate-500">{selectedUser.fayda_id}</p>
                 </div>
               </div>
 
-              <div className="grid grid-cols-2 gap-4">
+              <div className="space-y-6">
+                {/* Contact Information */}
                 <div>
-                  <p className="text-sm text-slate-500">Email</p>
-                  <p className="text-sm font-medium text-slate-900">{selectedUser.email || 'N/A'}</p>
+                  <h4 className="text-sm font-semibold text-slate-900 mb-3">Contact Information</h4>
+                  <div className="grid grid-cols-2 gap-4">
+                    <div>
+                      <p className="text-sm text-slate-500">Email</p>
+                      <p className="text-sm font-medium text-slate-900">{selectedUser.email || 'N/A'}</p>
+                    </div>
+                    <div>
+                      <p className="text-sm text-slate-500">Phone</p>
+                      <p className="text-sm font-medium text-slate-900">{selectedUser.phone || 'N/A'}</p>
+                    </div>
+                    <div>
+                      <p className="text-sm text-slate-500">Alternative Phone</p>
+                      <p className="text-sm font-medium text-slate-900">{selectedUser.alternative_phone || 'N/A'}</p>
+                    </div>
+                    <div>
+                      <p className="text-sm text-slate-500">Current Address</p>
+                      <p className="text-sm font-medium text-slate-900">{selectedUser.current_address || 'N/A'}</p>
+                    </div>
+                  </div>
                 </div>
+
+                {/* Personal Details */}
                 <div>
-                  <p className="text-sm text-slate-500">Phone</p>
-                  <p className="text-sm font-medium text-slate-900">{selectedUser.phone || 'N/A'}</p>
+                  <h4 className="text-sm font-semibold text-slate-900 mb-3">Personal Details</h4>
+                  <div className="grid grid-cols-2 gap-4">
+                    <div>
+                      <p className="text-sm text-slate-500">Age</p>
+                      <p className="text-sm font-medium text-slate-900">{selectedUser.age || 'N/A'}</p>
+                    </div>
+                    <div>
+                      <p className="text-sm text-slate-500">Gender</p>
+                      <p className="text-sm font-medium text-slate-900">{selectedUser.gender || 'N/A'}</p>
+                    </div>
+                    <div>
+                      <p className="text-sm text-slate-500">Nationality</p>
+                      <p className="text-sm font-medium text-slate-900">{selectedUser.nationality || 'N/A'}</p>
+                    </div>
+                    <div>
+                      <p className="text-sm text-slate-500">Date of Birth</p>
+                      <p className="text-sm font-medium text-slate-900">{selectedUser.birthdate || 'N/A'}</p>
+                    </div>
+                  </div>
                 </div>
+
+                {/* License Information */}
                 <div>
-                  <p className="text-sm text-slate-500">Gender</p>
-                  <p className="text-sm font-medium text-slate-900">{selectedUser.gender || 'N/A'}</p>
+                  <h4 className="text-sm font-semibold text-slate-900 mb-3">License Information</h4>
+                  <div className="grid grid-cols-2 gap-4">
+                    <div>
+                      <p className="text-sm text-slate-500">Has License</p>
+                      <p className="text-sm font-medium text-slate-900">{selectedUser.has_license || 'N/A'}</p>
+                    </div>
+                    {selectedUser.license_photo && (
+                      <div>
+                        <p className="text-sm text-slate-500">License Photo</p>
+                        <a href={selectedUser.license_photo} target="_blank" rel="noopener noreferrer" className="text-sm font-medium text-emerald-600 hover:text-emerald-700">View Photo</a>
+                      </div>
+                    )}
+                  </div>
                 </div>
+
+                {/* Employment & Experience */}
                 <div>
-                  <p className="text-sm text-slate-500">Nationality</p>
-                  <p className="text-sm font-medium text-slate-900">{selectedUser.nationality || 'N/A'}</p>
+                  <h4 className="text-sm font-semibold text-slate-900 mb-3">Employment & Experience</h4>
+                  <div className="grid grid-cols-2 gap-4">
+                    <div>
+                      <p className="text-sm text-slate-500">Currently Employed</p>
+                      <p className="text-sm font-medium text-slate-900">{selectedUser.currently_employed || 'N/A'}</p>
+                    </div>
+                    <div>
+                      <p className="text-sm text-slate-500">Previous Experience</p>
+                      <p className="text-sm font-medium text-slate-900">{selectedUser.previous_experience || 'N/A'}</p>
+                    </div>
+                    <div>
+                      <p className="text-sm text-slate-500">Previous Platform</p>
+                      <p className="text-sm font-medium text-slate-900">{selectedUser.previous_platform || 'N/A'}</p>
+                    </div>
+                    <div>
+                      <p className="text-sm text-slate-500">Location</p>
+                      <p className="text-sm font-medium text-slate-900">{selectedUser.location || 'N/A'}</p>
+                    </div>
+                  </div>
                 </div>
+
+                {/* Additional Information */}
                 <div>
-                  <p className="text-sm text-slate-500">Date of Birth</p>
-                  <p className="text-sm font-medium text-slate-900">{selectedUser.birthdate || 'N/A'}</p>
+                  <h4 className="text-sm font-semibold text-slate-900 mb-3">Additional Information</h4>
+                  <div className="grid grid-cols-2 gap-4">
+                    <div>
+                      <p className="text-sm text-slate-500">Accessibility Considerations</p>
+                      <p className="text-sm font-medium text-slate-900">{selectedUser.accessibility_considerations || 'N/A'}</p>
+                    </div>
+                    <div>
+                      <p className="text-sm text-slate-500">Goals</p>
+                      <p className="text-sm font-medium text-slate-900">{selectedUser.goals || 'N/A'}</p>
+                    </div>
+                    <div>
+                      <p className="text-sm text-slate-500">Future Opportunities</p>
+                      <p className="text-sm font-medium text-slate-900">{selectedUser.future_opportunities || 'N/A'}</p>
+                    </div>
+                    <div>
+                      <p className="text-sm text-slate-500">Heard From</p>
+                      <p className="text-sm font-medium text-slate-900">{selectedUser.heard_from || 'N/A'}</p>
+                    </div>
+                  </div>
                 </div>
+
+                {/* Financial Information */}
                 <div>
-                  <p className="text-sm text-slate-500">Location</p>
-                  <p className="text-sm font-medium text-slate-900">{selectedUser.location || 'N/A'}</p>
+                  <h4 className="text-sm font-semibold text-slate-900 mb-3">Financial Information</h4>
+                  <div className="grid grid-cols-3 gap-4">
+                    <div>
+                      <p className="text-sm text-slate-500">Till Number</p>
+                      <p className="text-sm font-medium text-slate-900">{selectedUser.till_number || 'N/A'}</p>
+                    </div>
+                    <div>
+                      <p className="text-sm text-slate-500">FCN Number</p>
+                      <p className="text-sm font-medium text-slate-900">{selectedUser.fcn_number || 'N/A'}</p>
+                    </div>
+                    <div>
+                      <p className="text-sm text-slate-500">Targa Number</p>
+                      <p className="text-sm font-medium text-slate-900">{selectedUser.targa_number || 'N/A'}</p>
+                    </div>
+                  </div>
                 </div>
+
+                {/* Timestamps */}
                 <div>
-                  <p className="text-sm text-slate-500">Registered</p>
-                  <p className="text-sm font-medium text-slate-900">
-                    {new Date(selectedUser.created_at).toLocaleString()}
-                  </p>
-                </div>
-                <div>
-                  <p className="text-sm text-slate-500">Last Updated</p>
-                  <p className="text-sm font-medium text-slate-900">
-                    {new Date(selectedUser.updated_at).toLocaleString()}
-                  </p>
+                  <h4 className="text-sm font-semibold text-slate-900 mb-3">Timestamps</h4>
+                  <div className="grid grid-cols-2 gap-4">
+                    <div>
+                      <p className="text-sm text-slate-500">Registered</p>
+                      <p className="text-sm font-medium text-slate-900">
+                        {new Date(selectedUser.created_at).toLocaleString()}
+                      </p>
+                    </div>
+                    <div>
+                      <p className="text-sm text-slate-500">Last Updated</p>
+                      <p className="text-sm font-medium text-slate-900">
+                        {new Date(selectedUser.updated_at).toLocaleString()}
+                      </p>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
