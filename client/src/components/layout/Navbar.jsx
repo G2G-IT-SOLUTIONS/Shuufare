@@ -1,16 +1,28 @@
-import { useState, useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { ChevronDown, Menu, X, Globe } from 'lucide-react'
+import {
+  ArrowRight,
+  Globe,
+  Menu,
+  X,
+} from 'lucide-react'
 import logo from '../../assets/logo.png'
 
 export default function Navbar() {
   const { t, i18n } = useTranslation()
+
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
 
   const navigationLinks = [
-    { label: t('navbar.services'), href: '#benefits' },
-    { label: t('navbar.contact'), href: '#cta' },
+    {
+      label: t('navbar.services'),
+      href: '#benefits',
+    },
+    {
+      label: t('navbar.contact'),
+      href: '#cta',
+    },
   ]
 
   const handleLanguageChange = (lang) => {
@@ -19,54 +31,104 @@ export default function Navbar() {
   }
 
   const handleNationalIdRegistration = () => {
-    const apiUrl = import.meta.env.VITE_API_URL;
-    
+    const apiUrl = import.meta.env.VITE_API_URL
+
     if (!apiUrl) {
-      console.error("VITE_API_URL is not configured");
-      return;
+      console.error('VITE_API_URL is not configured')
+      return
     }
 
-    window.location.href = `${apiUrl}/auth/fayda`;
-  };
+    window.location.href = `${apiUrl}/auth/fayda`
+  }
+
+  const closeMobileMenu = () => {
+    setMobileMenuOpen(false)
+  }
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 20)
-    window.addEventListener('scroll', onScroll, { passive: true })
-    return () => window.removeEventListener('scroll', onScroll)
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 20)
+    }
+
+    window.addEventListener('scroll', handleScroll, { passive: true })
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll)
+    }
   }, [])
+
+  // Prevent background scrolling when mobile menu is open
+  useEffect(() => {
+    document.body.style.overflow = mobileMenuOpen ? 'hidden' : ''
+
+    return () => {
+      document.body.style.overflow = ''
+    }
+  }, [mobileMenuOpen])
 
   return (
     <header
-      className={`sticky top-0 z-50 transition-all duration-500 ${
-        scrolled
-          ? 'border-b border-gray-500/60 bg-white/85 shadow-lg shadow-slate-950/3 backdrop-blur-2xl'
-          : 'bg-white/60 backdrop-blur-xl'
-      }`}
+      className={`
+        sticky top-0 z-50
+        transition-all duration-300
+        ${
+          scrolled
+            ? 'border-b border-slate-200/80 bg-white/90 shadow-sm backdrop-blur-xl'
+            : 'bg-white/75 backdrop-blur-xl'
+        }
+      `}
     >
       <nav
-        className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-3 sm:px-6 lg:px-8"
+        className="
+          mx-auto flex h-[76px] max-w-7xl
+          items-center justify-between
+          px-4 sm:px-6 lg:px-8
+        "
         aria-label="Primary navigation"
       >
         {/* Logo */}
         <a
           href="/"
-          className="group flex items-center gap-3 rounded-full px-1 py-1 transition-all duration-300 hover:scale-[1.03]"
+          onClick={closeMobileMenu}
+          className="
+            flex shrink-0 items-center
+            transition-transform duration-200
+            hover:scale-[1.02]
+          "
           aria-label="Shuufare home"
-        >      
-        <img
-             src={logo}
-            alt="Shuufare logo"
-            className="h-16 w-auto max-w-none rounded-2xl  transition-all duration-300 group-hover:brightness-110 "
+        >
+          <img
+            src={logo}
+            alt="Shuufare"
+            className="h-12 w-auto object-contain sm:h-14"
           />
         </a>
 
         {/* Desktop Navigation */}
-        <div className="hidden items-center gap-0.5 rounded-full border border-gray-500 bg-slate-50/80 p-1 backdrop-blur-sm lg:flex">
+        <div
+          className="
+            hidden lg:flex
+            items-center
+            rounded-full
+            border border-slate-200
+            bg-white/70
+            p-1
+            shadow-sm
+          "
+        >
           {navigationLinks.map((link) => (
             <a
-              key={link.label}
+              key={link.href}
               href={link.href}
-              className="relative rounded-full px-4 py-2 text-sm font-medium text-slate-600 transition-all duration-300 hover:bg-white hover:text-slate-950 hover:shadow-sm"
+              className="
+                rounded-full
+                px-5 py-2
+                text-sm font-medium
+                text-slate-600
+                transition-all duration-200
+                hover:bg-slate-100
+                hover:text-slate-950
+              "
             >
               {link.label}
             </a>
@@ -75,131 +137,278 @@ export default function Navbar() {
 
         {/* Desktop Actions */}
         <div className="hidden items-center gap-3 lg:flex">
-          {/* Language Switcher */}
-          <div className="flex items-center gap-1.5 rounded-full border border-gray-500 bg-white/90 p-1 shadow-sm backdrop-blur-sm ">
-            <Globe className="ml-2 h-3.5 w-3.5 text-slate-400" />
+
+          {/* Language */}
+          <div
+            className="
+              flex items-center
+              rounded-full
+              border border-slate-200
+              bg-white/80
+              p-1
+              shadow-sm
+            "
+          >
+            <Globe className="ml-2 mr-1 h-4 w-4 text-slate-400" />
+
             <button
               type="button"
+              aria-label="Switch to English"
               aria-pressed={i18n.language === 'en'}
               onClick={() => handleLanguageChange('en')}
-              className={`rounded-full px-3 py-1.5 text-sm font-semibold transition-all duration-300 ${
-                i18n.language === 'en'
-                  ? 'bg-slate-900 text-white shadow-md shadow-slate-900/20'
-                  : 'text-slate-500 hover:text-slate-900'
-              }`}
+              className={`
+                rounded-full
+                px-3 py-1.5
+                text-xs font-bold
+                transition-all duration-200
+                ${
+                  i18n.language === 'en'
+                    ? 'bg-slate-900 text-white shadow-sm'
+                    : 'text-slate-500 hover:text-slate-900'
+                }
+              `}
             >
               EN
             </button>
+
             <button
               type="button"
+              aria-label="Switch to Amharic"
               aria-pressed={i18n.language === 'am'}
               onClick={() => handleLanguageChange('am')}
-              className={`rounded-full px-3 py-1.5 text-sm font-semibold transition-all duration-300 ${
-                i18n.language === 'am'
-                  ? 'bg-slate-900 text-white shadow-md shadow-slate-900/20'
-                  : 'text-slate-500 hover:text-slate-900'
-              }`}
+              className={`
+                rounded-full
+                px-3 py-1.5
+                text-xs font-bold
+                transition-all duration-200
+                ${
+                  i18n.language === 'am'
+                    ? 'bg-slate-900 text-white shadow-sm'
+                    : 'text-slate-500 hover:text-slate-900'
+                }
+              `}
             >
               አማ
             </button>
           </div>
 
-          {/* CTA Button */}
-          <button 
-          type="button"
-          onClick={handleNationalIdRegistration}
-            className="btn-shimmer inline-flex items-center gap-2 rounded-full bg-amber-500 px-6 py-2.5 text-sm font-semibold text-black shadow-lg shadow-emerald-600/25 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-xl hover:shadow-emerald-600/30 border border-amber-500"
+          {/* CTA */}
+          <button
+            type="button"
+            onClick={handleNationalIdRegistration}
+            className="
+              group
+              inline-flex items-center gap-2
+              rounded-full
+              bg-amber-500
+              px-5 py-2.5
+              text-sm font-semibold
+              text-slate-950
+              shadow-sm
+              transition-all duration-200
+              hover:-translate-y-0.5
+              hover:bg-amber-400
+              hover:shadow-lg
+              active:translate-y-0
+            "
           >
             {t('navbar.startApplication')}
-            <ChevronDown className="h-4 w-4 -rotate-90 opacity-80" />
+
+            <ArrowRight
+              className="
+                h-4 w-4
+                transition-transform duration-200
+                group-hover:translate-x-0.5
+              "
+            />
           </button>
         </div>
 
         {/* Mobile Menu Button */}
         <button
           type="button"
-          className={`inline-flex h-11 w-11 items-center justify-center rounded-2xl border border-gray-500 transition-all duration-300 lg:hidden ${
+          onClick={() => setMobileMenuOpen((open) => !open)}
+          className="
+            flex h-11 w-11
+            items-center justify-center
+            rounded-xl
+            border border-slate-200
+            bg-white
+            text-slate-900
+            shadow-sm
+            transition-all duration-200
+            hover:bg-slate-50
+            lg:hidden
+          "
+          aria-label={
             mobileMenuOpen
-              ? 'border-emerald-200 bg-emerald-50 text-emerald-700'
-              : 'border-gray-500 bg-white text-slate-900 shadow-sm hover:bg-slate-50'
-          }`}
-          aria-label={mobileMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}
+              ? 'Close navigation menu'
+              : 'Open navigation menu'
+          }
           aria-expanded={mobileMenuOpen}
           aria-controls="mobile-navigation"
-          onClick={() => setMobileMenuOpen((open) => !open)}
         >
-          <div className="relative h-5 w-5">
-            <X className={`absolute inset-0 h-5 w-5 transition-all duration-300 ${mobileMenuOpen ? 'rotate-0 opacity-100' : 'rotate-90 opacity-0'}`} />
-            <Menu className={`absolute inset-0 h-5 w-5 transition-all duration-300 ${mobileMenuOpen ? '-rotate-90 opacity-0' : 'rotate-0 opacity-100'}`} />
-          </div>
+          {mobileMenuOpen ? (
+            <X className="h-5 w-5" />
+          ) : (
+            <Menu className="h-5 w-5" />
+          )}
         </button>
       </nav>
 
-      {/* Mobile Menu */}
+      {/* Mobile Navigation */}
       <div
         id="mobile-navigation"
-        className={`border-t border-gray-500/60 bg-white/98 px-4  backdrop-blur-2xl transition-all duration-400 ease-out lg:hidden ${
-          mobileMenuOpen ? 'max-h-150 opacity-100 pb-5' : 'pointer-events-none max-h-0 overflow-hidden opacity-0'
-        }`}
+        className={`
+          overflow-hidden
+          border-t border-slate-200/80
+          bg-white/95
+          backdrop-blur-xl
+          transition-all duration-300
+          lg:hidden
+          ${
+            mobileMenuOpen
+              ? 'max-h-[500px] opacity-100'
+              : 'pointer-events-none max-h-0 opacity-0'
+          }
+        `}
       >
-        <div className="mx-auto flex max-w-7xl flex-col gap-3">
-          <div className="grid gap-0.5 rounded-3xl border border-gray-500/80 bg-slate-50/70 p-2">
-            {navigationLinks.map((link, i) => (
+        <div className="mx-auto max-w-7xl px-4 py-5 sm:px-6">
+
+          {/* Links */}
+          <div className="space-y-1">
+            {navigationLinks.map((link) => (
               <a
-                key={link.label}
+                key={link.href}
                 href={link.href}
-                className="rounded-2xl px-4 py-3 text-sm font-medium text-slate-700 transition-all duration-200 hover:bg-white hover:text-slate-950 hover:shadow-sm"
-                style={{ animationDelay: `${i * 50}ms` }}
-                onClick={() => setMobileMenuOpen(false)}
+                onClick={closeMobileMenu}
+                className="
+                  flex items-center justify-between
+                  rounded-xl
+                  px-4 py-3.5
+                  text-sm font-medium
+                  text-slate-700
+                  transition-colors
+                  hover:bg-slate-50
+                  hover:text-slate-950
+                "
               >
                 {link.label}
+
+                <ArrowRight className="h-4 w-4 text-slate-400" />
               </a>
             ))}
           </div>
 
-          <div className="flex items-center justify-between gap-3 rounded-3xl border border-gray-500/80 bg-white p-3">
-            <div className="flex items-center gap-2.5 text-sm font-medium text-slate-500">
-              <span className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-emerald-50 text-emerald-600 ring-1 ring-emerald-100/50">
+          {/* Divider */}
+          <div className="my-4 h-px bg-slate-200" />
+
+          {/* Language */}
+          <div
+            className="
+              flex items-center justify-between
+              rounded-xl
+              border border-slate-200
+              bg-slate-50
+              p-3
+            "
+          >
+            <div className="flex items-center gap-2.5">
+              <div
+                className="
+                  flex h-9 w-9
+                  items-center justify-center
+                  rounded-full
+                  bg-white
+                  text-slate-500
+                  shadow-sm
+                "
+              >
                 <Globe className="h-4 w-4" />
+              </div>
+
+              <span className="text-sm font-medium text-slate-700">
+                {t('navbar.language')}
               </span>
-              {t('navbar.language')}
             </div>
-            <div className="flex items-center rounded-full border border-gray-500/80 bg-slate-50 p-1">
+
+            <div
+              className="
+                flex rounded-full
+                border border-slate-200
+                bg-white
+                p-1
+              "
+            >
               <button
                 type="button"
                 aria-pressed={i18n.language === 'en'}
                 onClick={() => handleLanguageChange('en')}
-                className={`rounded-full px-3 py-1.5 text-sm font-semibold transition-all duration-300 ${
-                  i18n.language === 'en'
-                    ? 'bg-slate-900 text-white shadow-sm'
-                    : 'text-slate-600 hover:text-slate-900'
-                }`}
+                className={`
+                  rounded-full
+                  px-3 py-1.5
+                  text-xs font-bold
+                  transition-all
+                  ${
+                    i18n.language === 'en'
+                      ? 'bg-slate-900 text-white'
+                      : 'text-slate-500'
+                  }
+                `}
               >
                 EN
               </button>
+
               <button
                 type="button"
                 aria-pressed={i18n.language === 'am'}
                 onClick={() => handleLanguageChange('am')}
-                className={`rounded-full px-3 py-1.5 text-sm font-semibold transition-all duration-300 ${
-                  i18n.language === 'am'
-                    ? 'bg-slate-900 text-white shadow-sm'
-                    : 'text-slate-600 hover:text-slate-900'
-                }`}
+                className={`
+                  rounded-full
+                  px-3 py-1.5
+                  text-xs font-bold
+                  transition-all
+                  ${
+                    i18n.language === 'am'
+                      ? 'bg-slate-900 text-white'
+                      : 'text-slate-500'
+                  }
+                `}
               >
                 አማ
               </button>
             </div>
           </div>
 
-          <a
-            href="/register"
-            className="btn-shimmer inline-flex items-center justify-center gap-2 rounded-2xl  shadow-lg shadow-emerald-600/20 transition-all duration-200 hover:shadow-xl bg-yellow-500 px-6 py-3 text-sm font-semibold text-black hover:-translate-y-0.5 hover:shadow-yellow-600/30"
-            onClick={() => setMobileMenuOpen(false)}
+          {/* Mobile CTA */}
+          <button
+            type="button"
+            onClick={handleNationalIdRegistration}
+            className="
+              group mt-4
+              flex w-full
+              items-center justify-center gap-2
+              rounded-xl
+              bg-amber-500
+              px-5 py-3.5
+              text-sm font-semibold
+              text-slate-950
+              shadow-sm
+              transition-all duration-200
+              hover:bg-amber-400
+              hover:shadow-lg
+            "
           >
             {t('navbar.startApplication')}
-            <ChevronDown className="h-4 w-4 -rotate-90 opacity-80" />
-          </a>
+
+            <ArrowRight
+              className="
+                h-4 w-4
+                transition-transform duration-200
+                group-hover:translate-x-0.5
+              "
+            />
+          </button>
         </div>
       </div>
     </header>
