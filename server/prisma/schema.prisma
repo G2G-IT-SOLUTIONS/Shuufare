@@ -4,8 +4,8 @@ generator client {
 
 datasource db {
   provider = "postgresql"
+  url      = env("DATABASE_URL")
 }
-
 
 model Driver {
   id                 Int      @id @default(autoincrement())
@@ -46,122 +46,52 @@ model Driver {
   created_at         DateTime @default(now())
 
 
-  // Relations
-  applications       Application[]
-  documents          Document[]
-  training           Training?
-  vehicle            Vehicle?
-
-
   @@map("driver")
 }
 
+model User {
+  id                          Int      @id @default(autoincrement())
+  fayda_id                    String   @unique
+  name                        String?
+  phone                       String?
+  alternative_phone            String?
+  email                       String?
+  photo_url                   String?
+  age                         Int?
+  gender                      String?
+  nationality                 String?
+  current_address             String?
+  birthdate                   String?
+  has_license                 String?
+  license_photo               String?
+  currently_employed          String?
+  previous_experience         String?
+  previous_platform           String?
+  location                    String?
+  accessibility_considerations String?
+  goals                       String?
+  future_opportunities        String?
+  heard_from                  String?
+  till_number                 String?
+  fcn_number                  String?
+  targa_number                String?
+  created_at                  DateTime @default(now())
+  updated_at                  DateTime @updatedAt
 
-
-model Application {
-
-  id          Int      @id @default(autoincrement())
-
-  driver_id   Int
-
-  status      String   @default("SUBMITTED")
-
-  notes       String?
-
-  created_at  DateTime @default(now())
-
-
-  driver Driver @relation(fields: [driver_id], references: [id])
-
-
-  @@map("application")
+  @@map("user")
 }
-
-
-
-model Document {
-
-  id          Int      @id @default(autoincrement())
-
-  driver_id   Int
-
-  type        String
-
-  file_path   String
-
-  created_at  DateTime @default(now())
-
-
-  driver Driver @relation(fields: [driver_id], references: [id])
-
-
-  @@map("document")
-}
-
-
-
-model Training {
-
-  id          Int      @id @default(autoincrement())
-
-  driver_id   Int      @unique
-
-  status      String   @default("NOT_STARTED")
-
-  training_date DateTime?
-
-  notes       String?
-
-
-  driver Driver @relation(fields: [driver_id], references: [id])
-
-
-  @@map("training")
-}
-
-
-
-model Vehicle {
-
-  id              Int      @id @default(autoincrement())
-
-
-  driver_id       Int?     @unique
-
-
-  plate_number    String
-
-  model           String?
-
-  vehicle_type    String?
-
-  status          String   @default("AVAILABLE")
-
-
-  created_at      DateTime @default(now())
-
-
-  driver Driver? @relation(fields: [driver_id], references: [id])
-
-
-  @@map("vehicle")
-}
-
-
-
 
 model Admin {
-
   id          Int      @id @default(autoincrement())
-
-
   email       String   @unique
+  password    String   // Hashed password
+  fullName    String
+  phone       String?
+  role        String   @default("admin")
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
 
-  password    String
-
-
-  created_at  DateTime @default(now())
-
-
-  @@map("admin")
+  @@index([email])
+  @@map("admins")
 }

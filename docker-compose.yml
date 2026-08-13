@@ -1,0 +1,58 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: shuufare-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: shuufare_user
+      POSTGRES_PASSWORD: shuufare_password
+      POSTGRES_DB: shuufare_db
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - shuufare-network
+
+  server:
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    container_name: shuufare-server
+    restart: unless-stopped
+    env_file:
+      - ./server/.env
+    environment:
+      DATABASE_URL: postgresql://shuufare_user:shuufare_password@postgres:5432/shuufare_db
+    volumes:
+      - ./server/uploads:/app/uploads
+    ports:
+      - "3000:3000"
+    depends_on:
+      - postgres
+    networks:
+      - shuufare-network
+
+  client:
+    build:
+      context: ./client
+      dockerfile: Dockerfile
+      args:
+        VITE_API_URL: /api
+    container_name: shuufare-client
+    restart: unless-stopped
+    ports:
+      - "80:80"
+    env_file:
+      - ./client/.env
+    depends_on:
+      - server
+    networks:
+      - shuufare-network
+
+volumes:
+  postgres_data:
+
+networks:
+  shuufare-network:
+    driver: bridge
