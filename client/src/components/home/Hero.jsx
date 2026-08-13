@@ -25,7 +25,7 @@ export default function Hero() {
     >
       {/* Mobile background */}
       <div
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat lg:hidden"
+        className="absolute -mt-20 inset-0 bg-cover bg-center bg-no-repeat lg:hidden"
         style={{
           backgroundImage: `url(${heroMobileImage})`,
         }}
@@ -84,7 +84,7 @@ export default function Hero() {
           <button
             type="button"
             onClick={handleNationalIdRegister}
-            className="group inline-flex min-h-14 items-center justify-center gap-3 rounded-full bg-amber-500 px-7 py-4 text-sm font-bold text-slate-950 shadow-2xl shadow-black/30 transition-all duration-300 hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-slate-950 active:translate-y-0 sm:text-base"
+            className="group inline-flex min-h-14 items-center justify-center gap-3 rounded-full bg-amber-500 px-7 py-4 text-sm font-bold text-slate-950 shadow-2xl shadow-black/30 transition-all duration-300 hover:-translate-y-1 focus:outline-none focus:ring-1 focus:ring-white focus:ring-offset-1 focus:ring-offset-slate-400 active:translate-y-0 sm:text-base"
             aria-label={t(
               "hero.registerWithNationalId",
               "Register with National ID"
@@ -117,7 +117,7 @@ export default function Hero() {
           {/* Learn More */}
           <a
             href="#how-it-works"
-            className="inline-flex min-h-14 items-center justify-center rounded-full border border-white/25 bg-white px-7 py-4 text-sm font-semibold text-black backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:border-white/40 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-slate-950 active:translate-y-0 sm:text-base"
+            className="inline-flex min-h-14 items-center justify-center rounded-full border border-white/25 bg-white px-7 py-4 text-sm font-semibold text-black backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:border-white/40 focus:outline-none focus:ring-0 focus:ring-white focus:ring-offset-1 focus:ring-offset-slate-500 active:translate-y-0 sm:text-base"
           >
             {t("hero.learnMore")}
           </a>
