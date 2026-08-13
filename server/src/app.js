@@ -3,10 +3,15 @@ import cors from 'cors'
 import dotenv from 'dotenv'
 import cookieParser from 'cookie-parser'
 import session from 'express-session'
+import path from 'path'
+import { fileURLToPath } from 'url'
 
 import apiRoutes from './routes/routes.js'
 import notFound from './middleware/notFound.js'
 import errorHandler from './middleware/errorHandler.js'
+
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = path.dirname(__filename)
 
 const app = express()
 dotenv.config()
@@ -18,6 +23,9 @@ app.use(cors({
 
 app.use(cookieParser())
 app.use(express.json())
+
+// Serve static files from uploads directory
+app.use('/uploads', express.static(path.join(__dirname, '../uploads')))
 
 app.use(session({
   secret: process.env.SESSION_SECRET || 'your-secret-key-change-in-production',

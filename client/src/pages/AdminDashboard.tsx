@@ -5,6 +5,12 @@ import axios from 'axios'
 
 const API_URL = import.meta.env.VITE_API_URL;
 
+const getUploadUrl = (path: string | null) => {
+  if (!path) return '';
+  const baseUrl = API_URL?.replace(/\/api$/, '') || '';
+  return `${baseUrl}${path}`;
+};
+
 interface User {
   id: number
   fayda_id: string
@@ -206,7 +212,7 @@ export default function AdminDashboard() {
                           )}
                           <div>
                             <p className="font-medium text-slate-900">{user.name || 'N/A'}</p>
-                            <p className="text-sm text-slate-500">{user.fayda_id}</p>
+                           
                           </div>
                         </div>
                       </td>
@@ -313,9 +319,19 @@ export default function AdminDashboard() {
                       <p className="text-sm font-medium text-slate-900">{selectedUser.has_license || 'N/A'}</p>
                     </div>
                     {selectedUser.license_photo && (
-                      <div>
-                        <p className="text-sm text-slate-500">License Photo</p>
-                        <a href={selectedUser.license_photo} target="_blank" rel="noopener noreferrer" className="text-sm font-medium text-emerald-600 hover:text-emerald-700">View Photo</a>
+                      <div className="col-span-2">
+                        <p className="text-sm text-slate-500 mb-2">License Photo</p>
+                        <img
+                          src={getUploadUrl(selectedUser.license_photo)}
+                          alt="License Photo"
+                          className="w-full max-w-xs h-auto rounded-lg border border-slate-200 object-cover"
+                          onError={(e) => {
+                            const target = e.target as HTMLImageElement;
+                            if (!target.src.includes('/api')) {
+                              target.src = getUploadUrl(selectedUser.license_photo);
+                            }
+                          }}
+                        />
                       </div>
                     )}
                   </div>
@@ -338,9 +354,26 @@ export default function AdminDashboard() {
                       <p className="text-sm font-medium text-slate-900">{selectedUser.previous_platform || 'N/A'}</p>
                     </div>
                     <div>
-                      <p className="text-sm text-slate-500">Location</p>
-                      <p className="text-sm font-medium text-slate-900">{selectedUser.location || 'N/A'}</p>
-                    </div>
+                      <p className="text-sm text-slate-500">Detail Location</p>
+<p className="text-sm font-medium text-slate-900">
+  {selectedUser.location
+    ? (() => {
+        const location =
+          typeof selectedUser.location === 'string'
+            ? JSON.parse(selectedUser.location)
+            : selectedUser.location;
+
+        return [
+          location.region,
+          location.zone,
+          location.woreda,
+        ]
+          .filter(Boolean)
+          .map(value => value.trim())
+          .join(', ');
+      })()
+    : 'N/A'}
+</p>                    </div>
                   </div>
                 </div>
 

@@ -91,6 +91,7 @@
     "personalDetails": "Personal Details",
     "age": "Age *",
     "drivingLicense": "Do you have a driving license? *",
+    "licensePhoto": "License Photo *",
     "select": "Select...",
     "employmentExperience": "Employment & Experience",
     "currentlyEmployed": "Are you currently employed? *",

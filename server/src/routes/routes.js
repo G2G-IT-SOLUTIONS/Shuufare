@@ -3,6 +3,7 @@ import { startFaydaAuth, faydaCallback } from "../controllers/faydaController.js
 import { submitUserProfile, getUserProfile } from "../controllers/userController.js";
 import { adminLogin, adminLogout, getAdminProfile, getAllUsers, getUserById, getDashboardStats } from "../controllers/adminController.js";
 import { adminAuth } from "../middleware/adminAuth.js";
+import upload from "../middleware/upload.js";
 
 const router = express.Router();
 
@@ -10,7 +11,7 @@ router.get("/api/auth/fayda", startFaydaAuth);
 
 router.get("/callback", faydaCallback);
 
-router.post("/api/driver/application", submitUserProfile);
+router.post("/api/driver/application", upload.single('license_photo'), submitUserProfile);
 
 router.get("/api/user/profile", getUserProfile);
 

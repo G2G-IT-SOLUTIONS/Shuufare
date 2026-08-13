@@ -28,6 +28,7 @@ interface FormData {
   currentLocation: string
   age: string
   drivingLicense: string
+  licensePhoto: File | null
   currentlyEmployed: string
   previousExperience: string
   accessibilityConsiderations: string
@@ -50,6 +51,7 @@ export default function AuthCallback() {
     currentLocation: '',
     age: '',
     drivingLicense: '',
+    licensePhoto: null,
     currentlyEmployed: '',
     previousExperience: '',
     accessibilityConsiderations: '',
@@ -57,6 +59,7 @@ export default function AuthCallback() {
     howDidYouHear: 'telegram',
     joinedTelegram: false
   })
+  const [licensePhotoPreview, setLicensePhotoPreview] = useState<string | null>(null)
 
   const success = searchParams.get('success')
   const errorMsg = searchParams.get('error')
@@ -88,6 +91,14 @@ export default function AuthCallback() {
     fetchProfile()
   }, [success, errorMsg, t])
 
+  useEffect(() => {
+    return () => {
+      if (licensePhotoPreview) {
+        URL.revokeObjectURL(licensePhotoPreview)
+      }
+    }
+  }, [licensePhotoPreview])
+
   const handleContinue = () => {
     navigate('/complete-profile', { state: { user: userData } })
   }
@@ -97,10 +108,23 @@ export default function AuthCallback() {
   }
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.type === 'checkbox' ? e.target.checked : e.target.value
-    })
+    const { name, type, files, checked, value } = e.target as any
+
+    if (type === 'file' && files && files[0]) {
+      const file = files[0]
+      setFormData({
+        ...formData,
+        [name]: file
+      })
+      if (name === 'licensePhoto') {
+        setLicensePhotoPreview(URL.createObjectURL(file))
+      }
+    } else {
+      setFormData({
+        ...formData,
+        [name]: type === 'checkbox' ? checked : value
+      })
+    }
   }
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -111,10 +135,29 @@ export default function AuthCallback() {
     }
 
     try {
-      await axios.post(`${API_URL}/driver/application`, {
-        ...formData,
-        userId: userData.id
-      }, { withCredentials: true })
+      const formDataToSend = new FormData()
+      formDataToSend.append('userId', userData.id.toString())
+      formDataToSend.append('phone', formData.phoneNumber)
+      formDataToSend.append('alternativePhone', formData.alternativePhone)
+      formDataToSend.append('age', formData.age)
+      formDataToSend.append('drivingLicense', formData.drivingLicense)
+      formDataToSend.append('currentlyEmployed', formData.currentlyEmployed)
+      formDataToSend.append('previousExperience', formData.previousExperience)
+      formDataToSend.append('currentLocation', formData.currentLocation)
+      formDataToSend.append('accessibilityConsiderations', formData.accessibilityConsiderations)
+      formDataToSend.append('goals', formData.goals)
+      formDataToSend.append('heard_from', formData.howDidYouHear)
+
+      if (formData.drivingLicense === 'yes' && formData.licensePhoto) {
+        formDataToSend.append('license_photo', formData.licensePhoto)
+      }
+
+      await axios.post(`${API_URL}/driver/application`, formDataToSend, {
+        withCredentials: true,
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        }
+      })
       setShowSuccessPopup(true)
     } catch (err: any) {
       console.error('Failed to submit application:', err)
@@ -350,6 +393,30 @@ export default function AuthCallback() {
                       { value: 'no', label: t('authCallback.no') }
                     ]}
                   />
+                  {formData.drivingLicense === 'yes' && (
+                    <div className="sm:col-span-2">
+                      <label className="block text-xs font-medium text-slate-700 mb-1.5">
+                        {t('authCallback.licensePhoto')} <span className="text-red-500">*</span>
+                      </label>
+                      <input
+                        type="file"
+                        name="licensePhoto"
+                        accept="image/*"
+                        onChange={handleInputChange}
+                        required
+                        className="w-full rounded-xl border border-slate-200 px-4 py-2.5 text-sm text-slate-900 focus:border-emerald-500 focus:outline-none focus:ring-2 focus:ring-emerald-500/20 transition-all"
+                      />
+                      {licensePhotoPreview && (
+                        <div className="mt-3">
+                          <img
+                            src={licensePhotoPreview}
+                            alt="License preview"
+                            className="h-32 w-auto object-cover rounded-xl border border-slate-200 shadow-sm"
+                          />
+                        </div>
+                      )}
+                    </div>
+                  )}
                 </div>
               </Section>
 

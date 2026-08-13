@@ -91,6 +91,7 @@
     "personalDetails": "የግል ዝርዝሮች",
     "age": "ዕድሜ *",
     "drivingLicense": "የመንጃ ፈቃድ አለዎት? *",
+    "licensePhoto": "የመንጃ ፈቃድ ፎቶ *",
     "select": "ይምረጡ...",
     "employmentExperience": "ቅጥር እና ልምድ",
     "currentlyEmployed": "አሁን ተቀጥረው እየሠሩ ነው? *",

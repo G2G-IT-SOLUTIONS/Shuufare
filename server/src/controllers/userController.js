@@ -18,7 +18,7 @@ export const submitUserProfile = async (req, res, next) => {
       age: req.body.age ? parseInt(req.body.age) : null,
       gender: req.body.gender,
       has_license: req.body.drivingLicense,
-      license_photo: req.body.license_photo,
+      license_photo: req.file ? `/uploads/${req.file.filename}` : null,
       currently_employed: req.body.currentlyEmployed,
       previous_experience: req.body.previousExperience,
       previous_platform: req.body.previous_platform,
