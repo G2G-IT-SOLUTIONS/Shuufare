@@ -4,7 +4,14 @@ import { ShieldCheck, AlertTriangle, Loader2, ArrowRight, RotateCcw, CheckCircle
 import axios from 'axios'
 import { useTranslation } from 'react-i18next'
 
+// @ts-ignore
 const API_URL = import.meta.env.VITE_API_URL;
+
+const getUploadUrl = (path: string | null) => {
+  if (!path) return '';
+  const baseUrl = API_URL?.replace(/\/api$/, '') || '';
+  return `${baseUrl}${path}`;
+};
 
 type Status = 'loading' | 'success' | 'error'
 
@@ -18,7 +25,11 @@ interface UserData {
   birthdate?: string | null
   nationality?: string | null
   address?: string | null
-  location?: string | null
+  location: {
+    region?: string | null
+    city?: string | null
+    country?: string | null
+  }
   phone?: string | null
 }
 
@@ -76,7 +87,6 @@ export default function AuthCallback() {
           withCredentials: true,
         })
         setUserData(res.data.user)
-        console.log('Fetched user profile:', res.data.user);
         setStatus('success')
       } catch (err: any) {
         console.error('Failed to fetch profile:', err)
@@ -297,7 +307,7 @@ export default function AuthCallback() {
                 <div className="flex items-center gap-4 mb-6">
                   {userData.photo_url ? (
                     <img
-                      src={userData.photo_url}
+                      src={getUploadUrl(userData.photo_url)}
                       alt={userData.name || t('authCallback.user')}
                       className="h-20 w-20 rounded-2xl border-2 border-emerald-100 object-cover shadow-md"
                     />
@@ -315,7 +325,23 @@ export default function AuthCallback() {
                   <InfoCard icon={User} label={t('authCallback.fullName')} value={userData.name || t('authCallback.na')} />
                   <InfoCard icon={Calendar} label={t('authCallback.dateOfBirth')} value={userData.birthdate || t('authCallback.na')} />
                   <InfoCard icon={Flag} label={t('authCallback.nationality')} value={userData.nationality || t('authCallback.na')} />
-                  <InfoCard icon={Home} label={t('authCallback.address')} value={userData.location || t('authCallback.na')} />
+                  <InfoCard icon={Home} label={t('authCallback.address')} value= {userData.location
+    ? (() => {
+        const location =
+          typeof userData.location === 'string'
+            ? JSON.parse(userData.location)
+            : userData.location;
+
+        return [
+          location.region,
+          location.zone,
+          location.woreda,
+        ]
+          .filter(Boolean)
+          .map(value => value.trim())
+          .join(', ');
+      })()
+    : 'N/A'} />
                   <InfoCard icon={Phone} label={t('authCallback.phoneNumber')} value={userData.phone || t('authCallback.na')} />
                 </div>
               </div>
@@ -466,18 +492,24 @@ export default function AuthCallback() {
                     value={formData.goals}
                     onChange={handleInputChange}
                     options={[
-                      { value: 'stable_income', label: t('authCallback.stableIncome') }
+                      { value: 'stable_income', label: t('authCallback.stableIncome') },
+                      { value: 'ownership', label: t('authCallback.ownership') },
+                      { value: 'employment', label: t('authCallback.employment') }
+
                     ]}
                   />
-                  <SelectField
-                    label={t('authCallback.howDidYouHear')}
-                    name="howDidYouHear"
-                    value={formData.howDidYouHear}
-                    onChange={handleInputChange}
-                    options={[
-                      { value: 'telegram', label: t('authCallback.telegram') }
-                    ]}
-                  />
+                 <SelectField 
+  label={t('authCallback.howDidYouHear')} 
+  name="howDidYouHear" 
+  value={formData.howDidYouHear} 
+  onChange={handleInputChange} 
+  options={[
+    { value: 'telegram', label: t('authCallback.telegram') },
+    { value: 'friend', label: t('authCallback.friend') },
+    { value: 'other', label: t('authCallback.other') },
+  ]} 
+/>
+                
                 </div>
               </Section>
 

@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Users, LogOut, Loader2, AlertCircle, Search, User as UserIcon } from 'lucide-react'
 import axios from 'axios'
-
+// @ts-ignore
 const API_URL = import.meta.env.VITE_API_URL;
 
 const getUploadUrl = (path: string | null) => {
@@ -201,7 +201,7 @@ export default function AdminDashboard() {
                         <div className="flex items-center gap-3">
                           {user.photo_url ? (
                             <img
-                              src={user.photo_url}
+                              src={getUploadUrl(user.photo_url)}
                               alt={user.name || 'User'}
                               className="h-10 w-10 rounded-full object-cover"
                             />
@@ -249,7 +249,7 @@ export default function AdminDashboard() {
               <div className="flex items-center gap-4 mb-6">
                 {selectedUser.photo_url ? (
                   <img
-                    src={selectedUser.photo_url}
+                    src={getUploadUrl(selectedUser.photo_url)}
                     alt={selectedUser.name || 'User'}
                     className="h-20 w-20 rounded-full object-cover"
                   />
