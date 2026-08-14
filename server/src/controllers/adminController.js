@@ -58,30 +58,7 @@ export const adminLogout = async (req, res, next) => {
   }
 };
 
-export const getAdminProfile = async (req, res, next) => {
-  try {
-    const admin = await prisma.admin.findUnique({
-      where: { id: req.session.adminId },
-      select: {
-        id: true,
-        email: true,
-        fullName: true,
-        phone: true,
-        role: true,
-        isActive: true,
-        createdAt: true
-      }
-    });
 
-    if (!admin) {
-      return res.status(404).json({ error: 'Admin not found' });
-    }
-
-    res.json(admin);
-  } catch (error) {
-    next(error);
-  }
-};
 
 export const getAllUsers = async (req, res, next) => {
   try {
@@ -108,7 +85,8 @@ export const getAllUsers = async (req, res, next) => {
         location: true,
         photo_url: true,
         created_at: true,
-        updated_at: true
+        updated_at: true,
+        heard_from:true
       },
       orderBy: { created_at: 'desc' }
     });
