@@ -114,23 +114,3 @@ export const getUserById = async (req, res, next) => {
     next(error);
   }
 };
-
-export const getDashboardStats = async (req, res, next) => {
-  try {
-    const totalUsers = await prisma.user.count();
-    const usersThisMonth = await prisma.user.count({
-      where: {
-        created_at: {
-          gte: new Date(new Date().setDate(new Date().getDate() - 30))
-        }
-      }
-    });
-
-    res.json({
-      totalUsers,
-      usersThisMonth
-    });
-  } catch (error) {
-    next(error);
-  }
-};

@@ -1,7 +1,7 @@
 import express from "express";
 import { startFaydaAuth, faydaCallback } from "../controllers/faydaController.js";
 import { submitUserProfile, getUserProfile } from "../controllers/userController.js";
-import { adminLogin, adminLogout, getAllUsers, getUserById, getDashboardStats } from "../controllers/adminController.js";
+import { adminLogin, adminLogout, getAllUsers, getUserById } from "../controllers/adminController.js";
 import { adminAuth } from "../middleware/adminAuth.js";
 import upload from "../middleware/upload.js";
 
@@ -18,6 +18,5 @@ router.post("/api/admin/login", adminLogin);
 router.post("/api/admin/logout", adminLogout);
 router.get("/api/admin/users", adminAuth, getAllUsers);
 router.get("/api/admin/users/:id", adminAuth, getUserById);
-router.get("/api/admin/stats", adminAuth, getDashboardStats);
 
 export default router;
