@@ -63,7 +63,7 @@
     "description": "ለየት ያለ ተሞክሮ ለማቅረብከፍተኛ ድርጅቶች ጋር እንሰራለን።"
   },
   "authCallback": {
-    "verificationSuccessMessage": " ማንነትዎ ፋይዳ ብሔራዊ መታወቂያ በመጠቀም በተሳካ ሁኔታ ተረጋግጧል።",
+    "verificationSuccessMessage": " ማንነትዎ በፋይዳ ብሔራዊ መታወቂያ በመጠቀም በተሳካ ሁኔታ ተረጋግጧል።",
     "completeRequiredFields": "እባክዎ ለመቀጠል የሚያስፈልጉትን መስኮች ይሙሉ",
     "driverApplication": "የአሽከርካሪ ማመልከቻ",
     "verifyingIdentity": "ማንነትዎን በማረጋገጥ ላይ",

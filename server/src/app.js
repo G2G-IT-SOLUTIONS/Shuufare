@@ -28,7 +28,7 @@ app.use(express.json())
 app.use('/uploads', express.static(path.join(__dirname, '../uploads')))
 
 app.use(session({
-  secret: process.env.SESSION_SECRET || 'your-secret-key-change-in-production',
+  secret: process.env.SESSION_SECRET || 'kelele yelem',
   resave: false,
   saveUninitialized: false,
   cookie: {
