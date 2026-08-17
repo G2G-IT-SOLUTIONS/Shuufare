@@ -24,13 +24,13 @@ interface UserData {
   gender?: string | null
   birthdate?: string | null
   nationality?: string | null
-  address?: string | null
-  location: {
+  location?: string | null
+  address: {
     region?: string | null
     city?: string | null
     country?: string | null
   }
-  phone?: string | null
+  phone_number?: string | null
 }
 
 interface FormData {
@@ -42,6 +42,7 @@ interface FormData {
   licensePhoto: File | null
   currentlyEmployed: string
   previousExperience: string
+  platforms: string
   accessibilityConsiderations: string
   goals: string
   howDidYouHear: string
@@ -65,6 +66,7 @@ export default function AuthCallback() {
     licensePhoto: null,
     currentlyEmployed: '',
     previousExperience: '',
+    platforms: '',
     accessibilityConsiderations: '',
     goals: 'stable_income',
     howDidYouHear: 'telegram',
@@ -150,16 +152,17 @@ export default function AuthCallback() {
       formDataToSend.append('phone', formData.phoneNumber)
       formDataToSend.append('alternativePhone', formData.alternativePhone)
       formDataToSend.append('age', formData.age)
+      formDataToSend.append('platforms', formData.platforms)
       formDataToSend.append('drivingLicense', formData.drivingLicense)
       formDataToSend.append('currentlyEmployed', formData.currentlyEmployed)
       formDataToSend.append('previousExperience', formData.previousExperience)
       formDataToSend.append('currentLocation', formData.currentLocation)
       formDataToSend.append('accessibilityConsiderations', formData.accessibilityConsiderations)
       formDataToSend.append('goals', formData.goals)
-      formDataToSend.append('heard_from', formData.howDidYouHear)
+      formDataToSend.append('referral_source', formData.howDidYouHear)
 
       if (formData.drivingLicense === 'yes' && formData.licensePhoto) {
-        formDataToSend.append('license_photo', formData.licensePhoto)
+        formDataToSend.append('license_file_path', formData.licensePhoto)
       }
 
       await axios.post(`${API_URL}/driver/application`, formDataToSend, {
@@ -325,24 +328,23 @@ export default function AuthCallback() {
                   <InfoCard icon={User} label={t('authCallback.fullName')} value={userData.name || t('authCallback.na')} />
                   <InfoCard icon={Calendar} label={t('authCallback.dateOfBirth')} value={userData.birthdate || t('authCallback.na')} />
                   <InfoCard icon={Flag} label={t('authCallback.nationality')} value={userData.nationality || t('authCallback.na')} />
-                  <InfoCard icon={Home} label={t('authCallback.address')} value= {userData.location
-    ? (() => {
-        const location =
-          typeof userData.location === 'string'
-            ? JSON.parse(userData.location)
-            : userData.location;
+                  <InfoCard icon={Home} label={t('authCallback.address')} value= {userData.address? (() => {
+        const address =
+          typeof userData.address === 'string'
+            ? JSON.parse(userData.address)
+            : userData.address;
 
         return [
-          location.region,
-          location.zone,
-          location.woreda,
+          address.region,
+          address.zone,
+          address.woreda,
         ]
           .filter(Boolean)
           .map(value => value.trim())
           .join(', ');
       })()
     : 'N/A'} />
-                  <InfoCard icon={Phone} label={t('authCallback.phoneNumber')} value={userData.phone || t('authCallback.na')} />
+                  <InfoCard icon={Phone} label={t('authCallback.phoneNumber')} value={userData.phone_number || t('authCallback.na')} />
                 </div>
               </div>
             </div>
@@ -370,6 +372,8 @@ export default function AuthCallback() {
                     label={t('authCallback.phoneNumber')}
                     name="phoneNumber"
                     type="tel"
+                    minLength={9}
+                    maxLength={15}
                     value={formData.phoneNumber}
                     onChange={handleInputChange}
                     placeholder={t('authCallback.phoneNumberPlaceholder')}
@@ -379,6 +383,8 @@ export default function AuthCallback() {
                     label={t('authCallback.alternativePhone')}
                     name="alternativePhone"
                     type="tel"
+                    minLength={9}
+                    maxLength={15}
                     value={formData.alternativePhone}
                     onChange={handleInputChange}
                     placeholder={t('authCallback.alternativePhonePlaceholder')}
@@ -402,6 +408,7 @@ export default function AuthCallback() {
                     label={t('authCallback.age')}
                     name="age"
                     type="number"
+                    min={18}
                     value={formData.age}
                     onChange={handleInputChange}
                     placeholder={t('25')}
@@ -472,10 +479,21 @@ export default function AuthCallback() {
                       { value: 'no', label: t('authCallback.no') }
                     ]}
                   />
-                </div>
-              </Section>
+                 {formData.previousExperience === "yes" && (
+           <div className="sm:col-span-2">
 
-              {/* Additional Information */}
+        <InputField
+          label={t('authCallback.previousExperience')}
+          name="platforms"  
+          type="text"
+          value={formData.platforms}
+          onChange={handleInputChange}
+          placeholder={t('authCallback.platformsPlaceholder')}
+          />
+          </div>
+          )}
+       </div>
+              </Section>
               <Section title={t('authCallback.additionalInformation')} icon={Info}>
                 <TextAreaField
                   label={t('authCallback.accessibilityConsiderations')}

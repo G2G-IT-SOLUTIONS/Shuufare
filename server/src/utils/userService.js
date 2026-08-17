@@ -4,7 +4,7 @@ import prisma from '../db/prismaClient.js';
 export async function findOrCreateUser(faydaId, additionalData = {}) {
   try {
     // First, try to find existing user by fayda_id
-    let user = await prisma.user.findUnique({
+    let user = await prisma.driver.findUnique({
       where: { fayda_id: faydaId }
     });
 
@@ -16,16 +16,16 @@ export async function findOrCreateUser(faydaId, additionalData = {}) {
           updated_at: new Date()
         };
 
-        // If location is an object, convert it to JSON string
-        // because the Prisma location field is expected to be a String.
+        // If address is an object, convert it to JSON string
+        // because the Prisma address field is expected to be a String.
         if (
-          data.location &&
-          typeof data.location === 'object'
+          data.address &&
+          typeof data.address === 'object'
         ) {
-          data.location = JSON.stringify(data.location);
+          data.address = JSON.stringify(data.address);
         }
 
-        user = await prisma.user.update({
+        user = await prisma.driver.update({
           where: { fayda_id: faydaId },
           data
         });
@@ -43,8 +43,8 @@ export async function findOrCreateUser(faydaId, additionalData = {}) {
     };
 
     // Include additional fields when creating the user
-    if (additionalData.phone !== undefined) {
-      createData.phone = additionalData.phone;
+    if (additionalData.phone_number !== undefined) {
+      createData.phone_number = additionalData.phone_number;
     }
 
     if (additionalData.gender !== undefined) {
@@ -59,14 +59,14 @@ export async function findOrCreateUser(faydaId, additionalData = {}) {
       createData.birthdate = additionalData.birthdate;
     }
 
-    if (additionalData.location !== undefined) {
-      createData.location =
-        typeof additionalData.location === 'object'
-          ? JSON.stringify(additionalData.location)
-          : additionalData.location;
+    if (additionalData.address !== undefined) {
+      createData.address =
+        typeof additionalData.address === 'object'
+          ? JSON.stringify(additionalData.address)
+          : additionalData.address;
     }
 
-    user = await prisma.user.create({
+    user = await prisma.driver.create({
       data: createData
     });
 
@@ -84,15 +84,15 @@ export async function updateUserProfile(userId, profileData) {
       updated_at: new Date()
     };
 
-    // Convert location object to JSON string if necessary
+    // Convert address object to JSON string if necessary
     if (
-      data.location &&
-      typeof data.location === 'object'
+      data.address &&
+      typeof data.address === 'object'
     ) {
-      data.location = JSON.stringify(data.location);
+      data.address = JSON.stringify(data.address);
     }
 
-    const user = await prisma.user.update({
+    const user = await prisma.driver.update({
       where: { id: userId },
       data
     });

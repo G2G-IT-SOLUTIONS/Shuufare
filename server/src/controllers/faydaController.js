@@ -141,7 +141,7 @@ export const faydaCallback = async (req, res, next) => {
       email: payload.email || null,
       name: payload.name || null,
 
-      phone:
+      phone_number:
         payload.phone_number ||
         payload.phone ||
         payload.phone_no ||
@@ -151,7 +151,7 @@ export const faydaCallback = async (req, res, next) => {
       nationality: payload.nationality || null,
       birthdate: payload.birthdate || payload.date_of_birth || null,
 
-      location:
+      address:
         payload.address ||
         payload.address_json ||
         null,

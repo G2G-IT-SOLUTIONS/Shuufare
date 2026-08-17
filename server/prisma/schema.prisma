@@ -8,75 +8,34 @@ datasource db {
 }
 
 model Driver {
-  id                 Int      @id @default(autoincrement())
-
-  name               String
-  email              String?
-
-  gender             String?
-  phone_number       String
-  alt_phone_number   String?
-
-  nationality        String?
-  birthdate          String?
-
-  address            String?
-
-  age                Int?
-
-  has_license        String?
-  license_file_path  String?
-
-  is_employed        String?
-  ride_experience    String?
-
-  ride_platform      String?
-
-  location           String?
-
-  accessibility      String?
-  growth_goals       String?
-
-  referral_source    String?
-
-  terms_agreed       Boolean? @default(false)
-
-  photo_url          String?
-
-  created_at         DateTime @default(now())
-
-
-  @@map("driver")
-}
-
-model User {
-  id                          Int      @id @default(autoincrement())
-  fayda_id                    String   @unique
-  name                        String?
-  phone                       String?
-  alternative_phone            String?
-  email                       String?
-  photo_url                   String?
-  age                         Int?
-  gender                      String?
-  nationality                 String?
-  current_address             String?
-  birthdate                   String?
-  has_license                 String?
-  license_photo               String?
-  currently_employed          String?
-  previous_experience         String?
-  previous_platform           String?
-  location                    String?
-  accessibility_considerations String?
-  goals                       String?
-  future_opportunities        String?
-  heard_from                  String?
-  till_number                 String?
-  fcn_number                  String?
-  targa_number                String?
-  created_at                  DateTime @default(now())
-  updated_at                  DateTime @updatedAt
+  id                   Int      @id @default(autoincrement())
+  fayda_id             String   @unique
+  name                 String?
+  phone_number         String?  // phone to phone_number
+  alt_phone_number     String?  // alternative_phone to alt_phone_number
+  email                String?
+  photo_url            String?
+  age                  Int?
+  gender               String?
+  nationality          String?
+  location             String?  // current_address to location
+  birthdate            String?
+  has_license          String?
+  license_file_path    String?  // license_photo to license_file_path
+  is_employed          String?  // currently_employed to is_employed
+  ride_experience      String?  // previous_experience to ride_experience
+  ride_platform        String?  // ride_platform to ride_platform
+  address              String?  // location to address
+  accessibility        String?  // accessibility to accessibility
+  growth_goals         String?  // goals to growth_goals
+  future_opportunities String?
+  referral_source      String?  // referral_source to referral_source
+  till_number          String?
+  terms_agreed         Boolean? @default(false)
+  fcn_number           String?
+  targa_number         String?
+  created_at           DateTime @default(now())
+  updated_at           DateTime @updatedAt
 
   @@map("user")
 }

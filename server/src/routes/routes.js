@@ -11,7 +11,7 @@ router.get("/api/auth/fayda", startFaydaAuth);
 
 router.get("/callback", faydaCallback);
 
-router.post("/api/driver/application", upload.single('license_photo'), submitUserProfile);
+router.post("/api/driver/application", upload.single('license_file_path'), submitUserProfile);
 
 router.get("/api/user/profile", getUserProfile);
 
