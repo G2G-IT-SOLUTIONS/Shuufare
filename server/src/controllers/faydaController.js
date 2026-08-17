@@ -98,7 +98,7 @@ export const faydaCallback = async (req, res, next) => {
       });
     }
 
-    console.log("Received authorization code");
+    //console.log("Received authorization code");
 
     // Exchange authorization code for access token
     const response = await axios.post(
@@ -117,16 +117,16 @@ export const faydaCallback = async (req, res, next) => {
 
     const { access_token } = response.data;
 
-    console.log("Received access token, verifying JWT...");
+   // console.log("Received access token, verifying JWT...");
 
     // Verify the JWT signature and claims
     const payload = await verifyJWT(access_token);
 
-    console.log("JWT verified successfully");
-    console.log("User subject (fayda_id):", payload.sub);
-    console.log("========== FAYDA JWT PAYLOAD ==========");
-    console.log(JSON.stringify(payload, null, 2));
-    console.log("=======================================");
+    // console.log("JWT verified successfully");
+    //console.log("User subject (fayda_id):", payload.sub);
+   // console.log("========== FAYDA JWT PAYLOAD ==========");
+    //console.log(JSON.stringify(payload, null, 2));
+    //console.log("=======================================");
 
     const rawPhotoUrl =
       payload.picture ||
@@ -158,7 +158,7 @@ export const faydaCallback = async (req, res, next) => {
 
       photo_url: localPhotoPath,
     });
-    console.log("User found/created:", user.id);
+   // console.log("User found/created:", user.id);
 
     // Set up session
     req.session.userId = user.id;
@@ -170,6 +170,7 @@ export const faydaCallback = async (req, res, next) => {
   } catch (error) {
     console.error(
       "Fayda callback error:",
+      
       error.response?.data || error.message
     );
 

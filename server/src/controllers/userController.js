@@ -10,11 +10,9 @@ export const submitUserProfile = async (req, res, next) => {
     }
 
     const userId = req.session.userId;
-
     // Extract profile data from request body
     const profileData = {
-      phone_number: req.body.phone_number,
-      
+      phone_number: req.body.phoneNumber,
       alt_phone_number: req.body.alternativePhone,
       age: req.body.age ? parseInt(req.body.age) : null,
       gender: req.body.gender,
@@ -30,10 +28,11 @@ export const submitUserProfile = async (req, res, next) => {
       referral_source: req.body.referral_source,
       till_number: req.body.till_number,
       fcn_number: req.body.fcn_number,
-      targa_number: req.body.targa_number,
+      targa_number: req.body.targa_number
     };
 
     // Update user profile
+    console.log('Updating user profile for userId:', userId, 'with data:', profileData);
     const user = await updateUserProfile(userId, profileData);
 
     return res.json({

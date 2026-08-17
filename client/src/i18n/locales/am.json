@@ -98,6 +98,7 @@
     "no": "አይ",
     "yes": "አዎ",
     "previousExperience": "ቀደም ሲል የ ታክሲ ጥሪ (Ride) አገልግሎት ልምድ አለዎት?",
+    "platforms": "የ ታክሲ ጥሪ (Ride) ስርዓት የሚያገለግፉትን ይምረጡ?",
     "platformsPlaceholder": "ለምሳሌ, Yango, Ride,Feres ወዘተ",
 
     "additionalInformation": "ተጨማሪ መረጃ",
@@ -126,7 +127,9 @@
     "faydaId": "የፋይዳ መታወቂያ",
     "applicationSubmitted": "ማመልከቻው በተሳካ ሁኔታ ገብቷል!",
     "applicationSubmittedDescription": "መረጃዎ ገብቷል። ማመልከቻዎን መርምረን በቅርቡ ምላሽ እንሰጥዎታለን።",
-    "close": "ዝጋ"
+    "close": "ዝጋ",
+    "ageValidation": "ትክክለኛውን ዕድሜዋን ያስገቡ",
+    "phoneValidation": "ትክክለኛውን ስልክ ቁጥሩን ያስገቡ"
   },
   "admin": {
     "login": "የአስተዳዳሪ (አድሚን) መግቢያ",

@@ -98,6 +98,7 @@
     "no": "No",
     "yes": "Yes",
     "previousExperience": "Previous ride-hailing experience?",
+    "platforms": "Which ride-hailing platforms have you worked with?",
     "platformsPlaceholder": "e.g., Yango, Ride,Feres etc.",
     "additionalInformation": "Additional Information",
     "accessibilityConsiderations": "Accessibility Considerations (Optional)",
@@ -127,7 +128,9 @@
     "faydaId": "Fayda ID",
     "applicationSubmitted": "Application Submitted Successfully!",
     "applicationSubmittedDescription": "Your information has been submitted. We will review your application and get back to you soon.",
-    "close": "Close"
+    "close": "Close",
+    "ageValidation": "Please enter your valid age",
+    "phoneValidation": "Please enter your valid phone number"
   },
   "admin": {
     "login": "Admin Login",

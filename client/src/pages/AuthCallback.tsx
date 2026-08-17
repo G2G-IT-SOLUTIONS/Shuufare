@@ -73,9 +73,17 @@ export default function AuthCallback() {
     joinedTelegram: false
   })
   const [licensePhotoPreview, setLicensePhotoPreview] = useState<string | null>(null)
+  const [validationErrors, setValidationErrors] = useState<{[key: string]: string}>({})
 
   const success = searchParams.get('success')
   const errorMsg = searchParams.get('error')
+
+  // Clear validation errors when component unmounts
+  useEffect(() => {
+    return () => {
+      setValidationErrors({})
+    }
+  }, [])
 
   useEffect(() => {
     if (success !== 'true') {
@@ -122,6 +130,9 @@ export default function AuthCallback() {
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     const { name, type, files, checked, value } = e.target as any
 
+    // Clear validation error for this field
+    setValidationErrors(prev => ({ ...prev, [name]: '' }))
+
     if (type === 'file' && files && files[0]) {
       const file = files[0]
       setFormData({
@@ -145,11 +156,23 @@ export default function AuthCallback() {
       setError(t('authCallback.userDataNotAvailable'))
       return
     }
+    // Validate age
+    const ageValue = parseInt(formData.age)
+    if (!ageValue || ageValue < 18 || ageValue > 100) {
+      setValidationErrors({ age: t('authCallback.ageValidation') })
+      return
+    }
+    // Validate phone number length (9-15 digits)
+    const phoneLength = formData.phoneNumber.replace(/\D/g, '').length // Remove non-digits for validation
+    if (phoneLength < 9 || phoneLength > 15) {
+      setValidationErrors({ phoneNumber: t('authCallback.phoneValidation') })
+      return
+    }
 
     try {
       const formDataToSend = new FormData()
       formDataToSend.append('userId', userData.id.toString())
-      formDataToSend.append('phone', formData.phoneNumber)
+      formDataToSend.append('phoneNumber', formData.phoneNumber)
       formDataToSend.append('alternativePhone', formData.alternativePhone)
       formDataToSend.append('age', formData.age)
       formDataToSend.append('platforms', formData.platforms)
@@ -378,6 +401,7 @@ export default function AuthCallback() {
                     onChange={handleInputChange}
                     placeholder={t('authCallback.phoneNumberPlaceholder')}
                     required
+                    error={validationErrors.phoneNumber}
                   />
                   <InputField
                     label={t('authCallback.alternativePhone')}
@@ -409,10 +433,12 @@ export default function AuthCallback() {
                     name="age"
                     type="number"
                     min={18}
+                    max={100}
                     value={formData.age}
                     onChange={handleInputChange}
                     placeholder={t('25')}
                     required
+                    error={validationErrors.age}
                   />
                   <SelectField
                     label={t('authCallback.drivingLicense')}
@@ -483,7 +509,7 @@ export default function AuthCallback() {
            <div className="sm:col-span-2">
 
         <InputField
-          label={t('authCallback.previousExperience')}
+          label={t('authCallback.platforms')}
           name="platforms"  
           type="text"
           value={formData.platforms}
@@ -603,7 +629,7 @@ const InputGroup = ({ children }: { children: React.ReactNode }) => (
   </div>
 )
 
-const InputField = ({ label, name, type, value, onChange, placeholder, required }: any) => (
+const InputField = ({ label, name, type, value, onChange, placeholder, required, error }: any) => (
   <div>
     <label className="block text-xs font-medium text-slate-700 mb-1.5">
       {label} {required && <span className="text-red-500">*</span>}
@@ -615,8 +641,13 @@ const InputField = ({ label, name, type, value, onChange, placeholder, required 
       onChange={onChange}
       placeholder={placeholder}
       required={required}
-      className="w-full rounded-xl border border-slate-200 px-4 py-2.5 text-sm text-slate-900 placeholder:text-slate-400 focus:border-emerald-500 focus:outline-none focus:ring-2 focus:ring-emerald-500/20 transition-all"
+      className={`w-full rounded-xl border px-4 py-2.5 text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 transition-all ${
+        error 
+          ? 'border-red-300 focus:border-red-500 focus:ring-red-500/20' 
+          : 'border-slate-200 focus:border-emerald-500 focus:ring-emerald-500/20'
+      }`}
     />
+    {error && <p className="mt-1 text-xs text-red-600">{error}</p>}
   </div>
 )
 
