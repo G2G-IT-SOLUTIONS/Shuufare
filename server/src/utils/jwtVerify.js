@@ -8,7 +8,7 @@ const EXPECTED_AUDIENCE = 'app1';
 
 let keystore = null;
 let lastFetch = 0;
-const CACHE_DURATION = 5 * 60 * 1000; // 5 minutes
+const CACHE_DURATION = 50 * 60 * 1000; // 50 minutes
 
 async function getKeystore() {
   const now = Date.now();

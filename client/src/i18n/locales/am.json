@@ -63,7 +63,7 @@
     "description": "ለየት ያለ ተሞክሮ ለማቅረብከፍተኛ ድርጅቶች ጋር እንሰራለን።"
   },
   "authCallback": {
-    "verificationSuccessMessage": " ማንነትዎ ፋይዳ ብሔራዊ መታወቂያ በመጠቀም በተሳካ ሁኔታ ተረጋግጧል።",
+    "verificationSuccessMessage": " ማንነትዎ በፋይዳ ብሔራዊ መታወቂያ በመጠቀም በተሳካ ሁኔታ ተረጋግጧል።",
     "completeRequiredFields": "እባክዎ ለመቀጠል የሚያስፈልጉትን መስኮች ይሙሉ",
     "driverApplication": "የአሽከርካሪ ማመልከቻ",
     "verifyingIdentity": "ማንነትዎን በማረጋገጥ ላይ",
@@ -98,6 +98,9 @@
     "no": "አይ",
     "yes": "አዎ",
     "previousExperience": "ቀደም ሲል የ ታክሲ ጥሪ (Ride) አገልግሎት ልምድ አለዎት?",
+    "platforms": "የ ታክሲ ጥሪ (Ride) ስርዓት የሚያገለግፉትን ይምረጡ?",
+    "platformsPlaceholder": "ለምሳሌ, Yango, Ride,Feres ወዘተ",
+
     "additionalInformation": "ተጨማሪ መረጃ",
     "accessibilityConsiderations": "ተደራሽነት ግምት ውስጥ ማስገባት (ከተፈለገ)",
     "accessibilityPlaceholder": "እኛ ልንደግፍዎት እንድንችል ማንኛውም የተለየ ፍላጎት ወይም አካል ጉዳተኛ ከሆኑ ያሳውቁን።",
@@ -124,7 +127,9 @@
     "faydaId": "የፋይዳ መታወቂያ",
     "applicationSubmitted": "ማመልከቻው በተሳካ ሁኔታ ገብቷል!",
     "applicationSubmittedDescription": "መረጃዎ ገብቷል። ማመልከቻዎን መርምረን በቅርቡ ምላሽ እንሰጥዎታለን።",
-    "close": "ዝጋ"
+    "close": "ዝጋ",
+    "ageValidation": "ትክክለኛውን ዕድሜዋን ያስገቡ",
+    "phoneValidation": "ትክክለኛውን ስልክ ቁጥሩን ያስገቡ"
   },
   "admin": {
     "login": "የአስተዳዳሪ (አድሚን) መግቢያ",

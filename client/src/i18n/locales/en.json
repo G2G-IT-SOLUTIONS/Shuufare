@@ -85,7 +85,7 @@
     "phoneNumber": "Phone Number *",
     "phoneNumberPlaceholder": "e.g. 0911223344",
     "alternativePhone": "Alternative Phone Number (Optional)",
-    "alternativePhonePlaceholder": "e.g. Family member",
+    "alternativePhonePlaceholder": "e.g. Family or Friend's Number",
     "currentLocation": "Current Location / City *",
     "currentLocationPlaceholder": "e.g. Addis Ababa",
     "personalDetails": "Personal Details",
@@ -98,6 +98,8 @@
     "no": "No",
     "yes": "Yes",
     "previousExperience": "Previous ride-hailing experience?",
+    "platforms": "Which ride-hailing platforms have you worked with?",
+    "platformsPlaceholder": "e.g., Yango, Ride,Feres etc.",
     "additionalInformation": "Additional Information",
     "accessibilityConsiderations": "Accessibility Considerations (Optional)",
     "accessibilityPlaceholder": "Let us know if you have any specific needs or disabilities so we can support you.",
@@ -126,7 +128,9 @@
     "faydaId": "Fayda ID",
     "applicationSubmitted": "Application Submitted Successfully!",
     "applicationSubmittedDescription": "Your information has been submitted. We will review your application and get back to you soon.",
-    "close": "Close"
+    "close": "Close",
+    "ageValidation": "Please enter your valid age",
+    "phoneValidation": "Please enter your valid phone number"
   },
   "admin": {
     "login": "Admin Login",

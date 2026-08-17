@@ -62,31 +62,32 @@ export const adminLogout = async (req, res, next) => {
 
 export const getAllUsers = async (req, res, next) => {
   try {
-    const users = await prisma.user.findMany({
+    const users = await prisma.driver.findMany({
       select: {
         id: true,
         fayda_id: true,
         name: true,
         email: true,
-        phone: true,
-        alternative_phone: true,
+        phone_number: true,
+        alt_phone_number: true,
         age: true,
         gender: true,
         nationality: true,
         birthdate: true,
-        current_address: true,
-        has_license: true,
-        license_photo: true,
-        currently_employed: true,
-        previous_experience: true,
-        goals: true,
-        future_opportunities: true,
-        accessibility_considerations: true,
         location: true,
+        has_license: true,
+        license_file_path: true,
+        is_employed: true,
+        ride_experience: true,
+        ride_platform: true,
+        growth_goals: true,
+        future_opportunities: true,
+        accessibility: true,
+        address: true,
         photo_url: true,
         created_at: true,
         updated_at: true,
-        heard_from:true
+        referral_source:true
       },
       orderBy: { created_at: 'desc' }
     });
@@ -101,7 +102,7 @@ export const getUserById = async (req, res, next) => {
   try {
     const { id } = req.params;
 
-    const user = await prisma.user.findUnique({
+    const user = await prisma.driver.findUnique({
       where: { id: parseInt(id) }
     });
 
@@ -117,8 +118,8 @@ export const getUserById = async (req, res, next) => {
 
 export const getDashboardStats = async (req, res, next) => {
   try {
-    const totalUsers = await prisma.user.count();
-    const usersThisMonth = await prisma.user.count({
+    const totalUsers = await prisma.driver.count();
+    const usersThisMonth = await prisma.driver.count({
       where: {
         created_at: {
           gte: new Date(new Date().setDate(new Date().getDate() - 30))

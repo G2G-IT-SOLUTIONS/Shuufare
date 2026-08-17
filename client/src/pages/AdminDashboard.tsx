@@ -15,25 +15,25 @@ interface User {
   id: number
   fayda_id: string
   name: string | null
-  phone: string | null
-  alternative_phone: string | null
+  phone_number: string | null
+  alt_phone_number: string | null
   email: string | null
   photo_url: string | null
   age: number | null
   gender: string | null
   nationality: string | null
-  current_address: string | null
+  address: string | null
   birthdate: string | null
   has_license: string | null
-  license_photo: string | null
-  currently_employed: string | null
-  previous_experience: string | null
-  previous_platform: string | null
+  license_file_path: string | null
+  is_employed: string | null
+  ride_experience: string | null
+  ride_platform: string | null
   location: string | null
-  accessibility_considerations: string | null
-  goals: string | null
+  accessibility: string | null
+  growth_goals: string | null
   future_opportunities: string | null
-  heard_from: string | null
+  referral_source: string | null
   till_number: string | null
   fcn_number: string | null
   targa_number: string | null
@@ -90,7 +90,7 @@ export default function AdminDashboard() {
   const filteredUsers = users.filter(user =>
     user.name?.toLowerCase().includes(searchTerm.toLowerCase()) ||
     user.email?.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    user.phone?.includes(searchTerm)
+    user.phone_number?.includes(searchTerm)
   )
 
   if (loading) {
@@ -218,7 +218,7 @@ export default function AdminDashboard() {
                       </td>
                       <td className="px-6 py-4">
                         <p className="text-sm text-slate-900">{user.email || 'N/A'}</p>
-                        <p className="text-sm text-slate-500">{user.phone || 'N/A'}</p>
+                        <p className="text-sm text-slate-500">{user.phone_number || 'N/A'}</p>
                       </td>
                       <td className="px-6 py-4">
                         <p className="text-sm text-slate-900">Gender: {user.gender || 'N/A'}</p>
@@ -274,15 +274,15 @@ export default function AdminDashboard() {
                     </div>
                     <div>
                       <p className="text-sm text-slate-500">Phone</p>
-                      <p className="text-sm font-medium text-slate-900">{selectedUser.phone || 'N/A'}</p>
+                      <p className="text-sm font-medium text-slate-900">{selectedUser.phone_number || 'N/A'}</p>
                     </div>
                     <div>
                       <p className="text-sm text-slate-500">Alternative Phone</p>
-                      <p className="text-sm font-medium text-slate-900">{selectedUser.alternative_phone || 'N/A'}</p>
+                      <p className="text-sm font-medium text-slate-900">{selectedUser.alt_phone_number || 'N/A'}</p>
                     </div>
                     <div>
                       <p className="text-sm text-slate-500">Current Address</p>
-                      <p className="text-sm font-medium text-slate-900">{selectedUser.current_address || 'N/A'}</p>
+                      <p className="text-sm font-medium text-slate-900">{selectedUser.location || 'N/A'}</p>
                     </div>
                   </div>
                 </div>
@@ -318,17 +318,17 @@ export default function AdminDashboard() {
                       <p className="text-sm text-slate-500">Has License</p>
                       <p className="text-sm font-medium text-slate-900">{selectedUser.has_license || 'N/A'}</p>
                     </div>
-                    {selectedUser.license_photo && (
+                    {selectedUser.license_file_path && (
                       <div className="col-span-2">
                         <p className="text-sm text-slate-500 mb-2">License Photo</p>
                         <img
-                          src={getUploadUrl(selectedUser.license_photo)}
+                          src={getUploadUrl(selectedUser.license_file_path)}
                           alt="License Photo"
                           className="w-full max-w-xs h-auto rounded-lg border border-slate-200 object-cover"
                           onError={(e) => {
                             const target = e.target as HTMLImageElement;
                             if (!target.src.includes('/api')) {
-                              target.src = getUploadUrl(selectedUser.license_photo);
+                              target.src = getUploadUrl(selectedUser.license_file_path);
                             }
                           }}
                         />
@@ -343,30 +343,30 @@ export default function AdminDashboard() {
                   <div className="grid grid-cols-2 gap-4">
                     <div>
                       <p className="text-sm text-slate-500">Currently Employed</p>
-                      <p className="text-sm font-medium text-slate-900">{selectedUser.currently_employed || 'N/A'}</p>
+                      <p className="text-sm font-medium text-slate-900">{selectedUser.is_employed || 'N/A'}</p>
                     </div>
                     <div>
                       <p className="text-sm text-slate-500">Previous Experience</p>
-                      <p className="text-sm font-medium text-slate-900">{selectedUser.previous_experience || 'N/A'}</p>
+                      <p className="text-sm font-medium text-slate-900">{selectedUser.ride_experience || 'N/A'}</p>
                     </div>
                     <div>
                       <p className="text-sm text-slate-500">Previous Platform</p>
-                      <p className="text-sm font-medium text-slate-900">{selectedUser.previous_platform || 'N/A'}</p>
+                      <p className="text-sm font-medium text-slate-900">{selectedUser.ride_platform || 'N/A'}</p>
                     </div>
                     <div>
                       <p className="text-sm text-slate-500">Detail Location</p>
 <p className="text-sm font-medium text-slate-900">
-  {selectedUser.location
+  {selectedUser.address
     ? (() => {
-        const location =
-          typeof selectedUser.location === 'string'
-            ? JSON.parse(selectedUser.location)
-            : selectedUser.location;
+        const address =
+          typeof selectedUser.address === 'string'
+            ? JSON.parse(selectedUser.address)
+            : selectedUser.address;
 
         return [
-          location.region,
-          location.zone,
-          location.woreda,
+          address.region,
+          address.zone,
+          address.woreda,
         ]
           .filter(Boolean)
           .map(value => value.trim())
@@ -383,11 +383,11 @@ export default function AdminDashboard() {
                   <div className="grid grid-cols-2 gap-4">
                     <div>
                       <p className="text-sm text-slate-500">Accessibility Considerations</p>
-                      <p className="text-sm font-medium text-slate-900">{selectedUser.accessibility_considerations || 'N/A'}</p>
+                      <p className="text-sm font-medium text-slate-900">{selectedUser.accessibility || 'N/A'}</p>
                     </div>
                     <div>
-                      <p className="text-sm text-slate-500">Goals</p>
-                      <p className="text-sm font-medium text-slate-900">{selectedUser.goals || 'N/A'}</p>
+                      <p className="text-sm text-slate-500">Growth Goals</p>
+                      <p className="text-sm font-medium text-slate-900">{selectedUser.growth_goals || 'N/A'}</p>
                     </div>
                     <div>
                       <p className="text-sm text-slate-500">Future Opportunities</p>
@@ -395,7 +395,7 @@ export default function AdminDashboard() {
                     </div>
                     <div>
                       <p className="text-sm text-slate-500">Heard From</p>
-                      <p className="text-sm font-medium text-slate-900">{selectedUser.heard_from || 'N/A'}</p>
+                      <p className="text-sm font-medium text-slate-900">{selectedUser.referral_source || 'N/A'}</p>
                     </div>
                   </div>
                 </div>
