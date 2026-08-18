@@ -47,7 +47,8 @@
     "phone": "+251 911 123 456",
     "email": "info@shuufare.com",
     "telegram": "@shuufare_eth",
-    "copyright": "All rights reserved"
+    "copyright": "All rights reserved",
+    "seeRoute": "See Route"
   },
   "qrRegistration": {
     "title": "Scan to Register",

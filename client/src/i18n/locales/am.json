@@ -47,7 +47,8 @@
     "phone": "+251 911 123 456",
     "email": "info@shuufare.com",
     "telegram": "@shuufare_eth",
-    "copyright": "መብቱ በህግ የተጠበቀ ነው"
+    "copyright": "መብቱ በህግ የተጠበቀ ነው",
+    "seeRoute": "መንገዱን ይመልከቱ"
   },
   "qrRegistration": {
     "title": "ለመመዝገብ ይቃኙ",

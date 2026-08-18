@@ -10,6 +10,7 @@ import logo from '../../assets/logo.png'
 
 export default function CTASection() {
   const { t } = useTranslation();
+
   const handleNationalIdRegistration = () => {
     const apiUrl = import.meta.env.VITE_API_URL;
 
@@ -19,6 +20,15 @@ export default function CTASection() {
     }
 
     window.location.href = `${apiUrl}/auth/fayda`;  
+  }
+
+  const latitude = 9.005633;
+  const longitude = 38.746372;
+  
+
+  const openGoogleMaps = () => {
+    const url = `https://www.google.com/maps?q=${latitude},${longitude}`;
+    window.open(url, '_blank', 'noopener,noreferrer');
   }
 
   return (
@@ -128,6 +138,14 @@ export default function CTASection() {
             <p className="mt-5 text-sm leading-7 text-slate-300">
               {t("cta.addressText")}
             </p>
+
+            <button
+              onClick={openGoogleMaps}
+              className="mt-5 inline-flex w-full items-center justify-center gap-2 rounded-full bg-emerald-500/10 px-5 py-2.5 text-sm font-semibold text-emerald-400 transition-all duration-300 hover:bg-emerald-500 hover:text-white"
+            >
+              <MapPin className="h-4 w-4" />
+              {t("cta.seeRoute")}
+            </button>
           </div>
 
           {/* Brand */}

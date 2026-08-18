@@ -25,7 +25,7 @@ export default function Hero() {
     >
       {/* Mobile background */}
       <div
-        className="absolute -mt-20 inset-0 bg-cover bg-center bg-no-repeat lg:hidden"
+        className="absolute -mt-32 inset-0 bg-cover bg-center bg-no-repeat lg:hidden"
         style={{
           backgroundImage: `url(${heroMobileImage})`,
         }}
