@@ -23,8 +23,8 @@ export default function CTASection() {
     window.location.href = `${apiUrl}/auth/fayda`;
   };
 
-  const latitude = 9.004656;
-  const longitude = 38.746693;
+  const latitude =9.005626;
+  const longitude =38.746426;
 
  const openGoogleMaps = () => {
   const url = `https://www.google.com/maps/dir/?api=1&destination=${latitude},${longitude}`;
