@@ -1,3 +1,4 @@
+import { useState } from "react";
 import {
   Zap,
   Shield,
@@ -5,139 +6,179 @@ import {
   Heart,
   Wallet,
   BriefcaseBusiness,
+  ChevronLeft,
+  ChevronRight,
 } from "lucide-react";
 import { useTranslation } from "react-i18next";
+import { AnimatePresence, motion } from "framer-motion";
 
 export default function Benefits() {
   const { t } = useTranslation();
+  const [current, setCurrent] = useState(0);
+  const [direction, setDirection] = useState(1);
 
   const benefits = [
     {
       title: t("benefits.vehicleOwnership"),
       icon: Zap,
-      accent: "bg-emerald-500",
-      accentLight: "bg-emerald-50 text-emerald-600",
     },
     {
       title: t("benefits.vehicleInsurance"),
       icon: Shield,
-      accent: "bg-cyan-500",
-      accentLight: "bg-cyan-50 text-cyan-600",
     },
     {
       title: t("benefits.fleetManagement"),
       icon: Wrench,
-      accent: "bg-violet-500",
-      accentLight: "bg-violet-50 text-violet-600",
     },
     {
       title: t("benefits.companyEV"),
       icon: Heart,
-      accent: "bg-amber-500",
-      accentLight: "bg-amber-50 text-amber-600",
     },
     {
       title: t("benefits.microFinance"),
       icon: Wallet,
-      accent: "bg-blue-500",
-      accentLight: "bg-blue-50 text-blue-600",
     },
     {
       title: t("benefits.salaryEmployment"),
       icon: BriefcaseBusiness,
-      accent: "bg-rose-500",
-      accentLight: "bg-rose-50 text-rose-600",
     },
   ];
+
+  const next = () => {
+    setDirection(1);
+    setCurrent((prev) => (prev + 1) % benefits.length);
+  };
+
+  const previous = () => {
+    setDirection(-1);
+    setCurrent((prev) => (prev - 1 + benefits.length) % benefits.length);
+  };
+
+  const benefit = benefits[current];
+  const Icon = benefit.icon;
 
   return (
     <section
       id="benefits"
-      className="relative overflow-hidden bg-white py-20 sm:py-24"
+      className="relative overflow-hidden bg-white py-16 sm:py-24 lg:py-28"
     >
-      
-      {/* Background accents */}
-      <div
-        className="pointer-events-none absolute -left-40 top-1/3 h-72 w-72 rounded-full bg-emerald-50/70 blur-3xl"
-        aria-hidden="true"
-      />
-
-      <div
-        className="pointer-events-none absolute -right-40 bottom-1/4 h-72 w-72 rounded-full bg-cyan-50/50 blur-3xl"
-        aria-hidden="true"
-      />
-
-      <div className="relative mx-auto max-w-7xl px-6 sm:px-8 lg:px-12">
-        <div className="grid gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:items-center lg:gap-16">
+      <div className="relative mx-auto max-w-7xl px-5 sm:px-8 lg:px-12">
+        <div className="grid gap-12 lg:grid-cols-[0.7fr_1.3fr] lg:items-center lg:gap-16">
           
-          {/* Section heading */}
+          {/* Heading */}
           <div className="max-w-xl">
             <p className="text-center text-3xl font-bold tracking-tight text-slate-950 sm:text-4xl lg:text-left lg:text-5xl">
               {t("benefits.title")}
             </p>
 
-            <div className="mx-auto mt-4 h-1 w-12 rounded-full bg-amber-600 lg:mx-0" />
+            <div className="mx-auto mt-5 h-1 w-12 rounded-full bg-amber-500 lg:mx-0" />
 
-           
-              <div className="mt-8 flex items-center gap-3">
+            <div className="mt-8 flex items-center justify-center gap-3 lg:justify-start">
               <div className="flex -space-x-2">
-                <span className="h-8 w-8 rounded-full border-2 border-white bg-emerald-500" />
-                <span className="h-8 w-8 rounded-full border-2 border-white bg-cyan-500" />
-                <span className="h-8 w-8 rounded-full border-2 border-white bg-violet-500" />
+                <span className="h-9 w-9 rounded-full border-2 border-white bg-emerald-500" />
+                <span className="h-9 w-9 rounded-full border-2 border-white bg-cyan-500" />
+                <span className="h-9 w-9 rounded-full border-2 border-white bg-violet-500" />
               </div>
 
               <span className="text-sm font-medium text-slate-600">
-                {t(
-                  "benefits.subtitle"
-                )
-                }
-                <span className=" text-linear-warm ml-1">
-                {t ("benefits.highlight")}.
-              </span>
+                {t("benefits.subtitle")}
+                <span className="ml-1">
+                  {t("benefits.highlight")}.
+                </span>
               </span>
             </div>
           </div>
 
-          {/* Benefits */}
-          <div className="grid gap-4 sm:grid-cols-2">
-            {benefits.map((benefit, index) => {
-              const Icon = benefit.icon;
-
-              return (
-                <article
-                  key={`${benefit.title}-${index}`}
-                  className="group relative overflow-hidden rounded-3xl border border-slate-200 bg-white p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-slate-300 hover:shadow-lg"
-                >
-                  {/* Subtle hover glow */}
-                  <div
-                    className={`pointer-events-none absolute -right-10 -top-10 h-28 w-28 rounded-full ${benefit.accent} opacity-0 blur-3xl transition-opacity duration-500 group-hover:opacity-10`}
-                    aria-hidden="true"
-                  />
-
-                  <div className="relative flex items-start justify-between">
-                    <div
-                      className={`flex h-12 w-12 items-center justify-center rounded-2xl ${benefit.accentLight} transition-transform duration-300 group-hover:scale-105`}
-                    >
+          {/* Large Slider */}
+          <div className="relative w-full">
+            <AnimatePresence mode="wait" custom={direction}>
+              <motion.div
+                key={current}
+                custom={direction}
+                initial={{
+                  opacity: 0,
+                  x: direction > 0 ? 70 : -70,
+                }}
+                animate={{
+                  opacity: 1,
+                  x: 0,
+                }}
+                exit={{
+                  opacity: 0,
+                  x: direction > 0 ? -70 : 70,
+                }}
+                transition={{
+                  duration: 0.35,
+                  ease: [0.22, 1, 0.36, 1],
+                }}
+                className="w-full"
+              >
+                <div className="relative flex min-h-[300px] w-full flex-col justify-between overflow-hidden rounded-2xl border border-slate-100 bg-white p-8 shadow-sm sm:min-h-[300px] sm:p-10 lg:min-h-[420px] lg:p-12">
+                  
+                  {/* Top */}
+                  <div className="flex items-start justify-between">
+                    <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-slate-50">
                       <Icon
-                        className="h-5 w-5"
-                        strokeWidth={2}
-                        aria-hidden="true"
+                        className="h-7 w-7 text-slate-800"
+                        strokeWidth={1.8}
                       />
                     </div>
 
-                    <span className="text-xs font-bold tracking-[0.2em] text-slate-300">
-                      {String(index + 1).padStart(2, "0")}
+                    <span className="text-sm font-semibold tracking-[0.2em] text-slate-300">
+                      {String(current + 1).padStart(2, "0")}
                     </span>
                   </div>
 
-                  <h3 className="relative mt-6 text-lg font-bold leading-7 text-slate-950 transition-colors duration-200 group-hover:text-emerald-700">
-                    {benefit.title}
-                  </h3>
+                  {/* Content */}
+                  <div>
+                    <h3 className="max-w-2xl text-3xl font-bold tracking-tight text-slate-950 sm:text-4xl lg:text-5xl">
+                      {benefit.title}
+                    </h3>
 
-                  <div className="mt-5 h-px w-8 bg-slate-200 transition-all duration-300 group-hover:w-12 group-hover:bg-slate-400" />
-                </article>
-              );
-            })}
+                    <div className="mt-8 h-px w-16 bg-slate-300" />
+                  </div>
+
+                  {/* Bottom */}
+                  <div className="flex items-center justify-between pt-8">
+                    <div className="flex gap-1.5">
+                      {benefits.map((_, index) => (
+                        <button
+                          key={index}
+                          onClick={() => {
+                            setDirection(index > current ? 1 : -1);
+                            setCurrent(index);
+                          }}
+                          aria-label={`Go to benefit ${index + 1}`}
+                          className={`h-1.5 rounded transition-all duration-300 ${
+                            index === current
+                              ? "w-8 bg-slate-900"
+                              : "w-1.5 bg-slate-200 hover:bg-slate-400"
+                          }`}
+                        />
+                      ))}
+                    </div>
+
+                    <div className="flex items-center gap-2">
+                      <button
+                        onClick={previous}
+                        aria-label="Previous benefit"
+                        className="flex h-11 w-11 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-600 transition-all duration-200 hover:border-slate-400 hover:text-slate-950"
+                      >
+                        <ChevronLeft className="h-5 w-5" />
+                      </button>
+
+                      <button
+                        onClick={next}
+                        aria-label="Next benefit"
+                        className="flex h-11 w-11 items-center justify-center rounded-full bg-slate-950 text-white transition-all duration-200 hover:bg-slate-800"
+                      >
+                        <ChevronRight className="h-5 w-5" />
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+            </AnimatePresence>
           </div>
         </div>
       </div>

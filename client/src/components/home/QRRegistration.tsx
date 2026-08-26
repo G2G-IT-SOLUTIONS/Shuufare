@@ -10,7 +10,7 @@ export default function QRRegistration() {
   return (
     <section
       id="register"
-      className="border-t border-slate-100 bg-slate-50/50 py-20 sm:py-24"
+      className="hidden lg:block border-t border-slate-100 bg-slate-50/50 py-20 sm:py-24"
     >
       <div className="mx-auto max-w-7xl px-6 sm:px-8 lg:px-12">
 
