@@ -15,7 +15,7 @@ const __dirname = path.dirname(__filename)
 
 const app = express()
 dotenv.config()
-
+app.set('trust proxy', 1);
 app.use(cors({
   origin: process.env.CLIENT_URL || 'http://localhost:3000',
   credentials: true
@@ -33,10 +33,11 @@ app.use(session({
   saveUninitialized: false,
   cookie: {
     httpOnly: true,
-    secure:true,
-    maxAge: 24 * 60 * 60 * 1000 // 24 hours
+    secure: true,
+    sameSite: 'lax',
+    maxAge: 24 * 60 * 60 * 1000
   }
-}))
+}));
 
 app.get('/health', (req, res) => {
   res.json({ status: 'ok' })
